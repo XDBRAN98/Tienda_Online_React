@@ -117,6 +117,8 @@ header .login box-icon {
 
 .header_icons {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
 }
 

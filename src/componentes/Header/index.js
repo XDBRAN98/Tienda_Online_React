@@ -15,14 +15,15 @@ export const Header = () => {
 
       <div className="header_icons">
         <div className="cart">
+          <Link to={"/cart"}>
           <box-icon name="cart"></box-icon>
+          </Link>
           <span className="item__total">0</span>
         </div>
 
         {location.pathname !== "/login" && (
           <Link to="/login">
             <div className="login">
-              <h3>Login</h3>
               <box-icon name="user"></box-icon>
             </div>
           </Link>
