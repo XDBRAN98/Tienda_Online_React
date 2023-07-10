@@ -1,4 +1,7 @@
+
 import React, { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
 
 import { useProductos } from "../../Hooks/UseProductos";
 
@@ -24,29 +27,28 @@ export const ProductosLista = () => {
 				{productos.map(producto => (
 
 					<div className="producto" key={producto.id}>
-						<a href=" ">
+						<Link to= {`/producto/${producto.id}`}>
 							<div className="producto__img">
-								<img src={producto.image} alt="" />
+								<img src={producto.img1} alt="" />
 							</div>
-						</a>
+						</Link>
 						<div className="producto__footer">
 							<h1>{producto.title}</h1>
 							<p>{producto.category}</p>
 							<p className="price">${producto.price} Cop</p>
 						</div>
 						<div className="buttoms">
-							<button className="btn">
+
+							<button id="btn_añadirCarrito" className="btn">
 								Añadir al carrito
 							</button>
 
-							<button className="btn2">
-								Vista
-							</button>
-
+								<button id="btn_productoDetalles" className="btn2" onClick={()=>{ window.location.href = `/producto/${producto.id}`}}>
+									Vista
+								</button>
 						</div>
 					</div>
 				))}
-
 
 			</div>
 		</>

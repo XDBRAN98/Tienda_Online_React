@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { Header } from "./componentes/Header";
 import { Paginas } from "./rutas/paginas"
+import { Carrito } from "./componentes/Carrito";
 
 
 function App() {

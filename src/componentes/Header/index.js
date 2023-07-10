@@ -6,7 +6,7 @@ export const Header = () => {
   const location = useLocation();
 
   return (
-    <header>
+    <header className="header__primario">
       <Link to="/">
         <div className="logo">
           <img src={Logo} alt="" width="150" />
