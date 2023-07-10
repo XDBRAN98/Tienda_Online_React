@@ -13,7 +13,9 @@ export const ProductosLista = () => {
 		productosService.getProductos().then(data => {
 			setProductos(data)
 		})
-	}, [])
+	}, [	
+		productosService
+	])
 
 	return (
 		<>
@@ -22,7 +24,7 @@ export const ProductosLista = () => {
 				{productos.map(producto => (
 
 					<div className="producto" key={producto.id}>
-						<a href="#">
+						<a href=" ">
 							<div className="producto__img">
 								<img src={producto.image} alt="" />
 							</div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import 'boxicons';
+
 
 
 import { Header } from "./componentes/Header";
