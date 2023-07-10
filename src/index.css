@@ -221,6 +221,7 @@ header .login box-icon {
   padding: 13rem 1rem 0 1rem;
   box-sizing: border-box;
 }
+
 .detalles h2{
   font-size: 3.5rem;
   width: 100%;
@@ -229,11 +230,13 @@ header .login box-icon {
   font-family:Helvetica, sans-serif;
   color: #1a202c;
 }
+
 .detalles .price{
   font-size: 2.5rem;
   font-weight: 700;
   color: #08a05c;
 }
+
 .detalles button{
   max-width: 300px;
   margin: 1rem 0 0 0;
@@ -247,28 +250,32 @@ header .login box-icon {
   border-radius: 8px;
   cursor: pointer;
 }
+
 .detalles .grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem 1rem;
   max-width: 350px;
 }
+
 .detalles .grid > .nuevo, .size{
   padding: 1rem 2rem;
   border-radius: 8px;
   font-size: 2rem;
   font-weight: 600;
   color: white;
- 
 }
+
 .detalles .grid .nuevo{
   background-color:#08a05c;
   
 }
+
 .detalles .grid .size{
   background-color:#f1365b;
   display: flex;
 }
+
 .detalles .grid .size select{
   border: none;
   outline: 0;
@@ -277,18 +284,21 @@ header .login box-icon {
   color: white;
   cursor: pointer;
 }
+
 .detalles img{
   min-height: 300px;
   object-fit: contain;
   margin-top:  -7rem;
   z-index: -1;
 }
+
 .detalles input{
   max-width: 700px;
   margin: 0 auto;
   width: 100%;
   margin-bottom: 2rem;
 }
+
 .detalles .description{
   font-size: 1.1rem;
   max-width: 1300px;
@@ -298,10 +308,24 @@ header .login box-icon {
   margin: 0 auto;
   font-weight: 500;
 }
+
 .detalles .description b{
   font-size: 1.4rem;
   color: #30333a;
 }
+
+.contenedorImagenDetalles{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagenProductodetalles{
+
+  width: 800px;
+  height: 800px;
+}
+
 
 
 /*---------------------------------- Media ----------------------------------*/

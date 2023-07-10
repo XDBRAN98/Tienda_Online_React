@@ -8,13 +8,13 @@ export const ProductoDetalles = () => {
 
     const { id } = useParams();
     const producto = data.items.find((item) => item.id === Number(id));
-  
+
     const [selectedValue, setSelectedValue] = useState(1);
-  
+
     const handleInput = (e) => {
         const value = parseInt(e.target.value);
         setSelectedValue(value);
-      };
+    };
 
     return (
         <>
@@ -42,18 +42,22 @@ export const ProductoDetalles = () => {
                 <button id="btn_añadirCarrito" className="btn">
                     Añadir al carrito
                 </button>
-                <img src={producto[`img${selectedValue}`]} alt={producto.title} />
-                <input 
-                type="range" 
-                min={1} 
-                max={3} 
-                step={1} 
-                value={selectedValue}
-                onChange={handleInput}
+
+                <div className='contenedorImagenDetalles'>
+                    <img className='imagenProductodetalles' src={producto[`img${selectedValue}`]} alt={producto.title} />
+                </div>
+
+                <input
+                    type="range"
+                    min={1}
+                    max={3}
+                    step={1}
+                    value={selectedValue}
+                    onChange={handleInput}
                 />
                 <div className='description'></div>
-                
-                <p><d>descripcion:</d> hola soy la descripcion del producto, comprame <br/> <br/> Lorem ipsum </p>
+
+                <p><d>descripcion:</d> hola soy la descripcion del producto, comprame <br /> <br /> Lorem ipsum </p>
             </div>
         </>
     )
