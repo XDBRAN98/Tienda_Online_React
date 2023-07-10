@@ -14,7 +14,7 @@ export const data = {
       {
         id: 2,
         title: "Nike Dunk Low Off-White Pine Green",
-        price: 304,
+        price: 304.000,
         image: require("../acces/imagesproductos/img02.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Dunk-Low-Off-White-Pine-Green/Images/Nike-Dunk-Low-Off-White-Pine-Green/Lv2/img",
@@ -24,7 +24,7 @@ export const data = {
       {
         id: 3,
         title: "Nike Air Force 1 Low Supreme Black",
-        price: 475,
+        price: 475.000,
         image: require("../acces/imagesproductos/img03.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Air-Force-1-Low-Supreme-Box-Logo-Black/Images/Nike-Air-Force-1-Low-Supreme-Box-Logo-Black/Lv2/img",
@@ -34,7 +34,7 @@ export const data = {
       {
         id: 4,
         title: "Nike LD Waffle Sacai White Nylon",
-        price: 399,
+        price: 399.000,
         image: require("../acces/imagesproductos/img04.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-LD-Waffle-Sacai-White-Nylon/Images/Nike-LD-Waffle-Sacai-White-Nylon/Lv2/img",
@@ -44,7 +44,7 @@ export const data = {
       {
         id: 5,
         title: "Nike Dunk Low SP Kentucky (2021)",
-        price: 405,
+        price: 405.000,
         image: require("../acces/imagesproductos/img05.jpg"),
         category: "nike",
         img1: " https://stockx-360.imgix.net/Nike-Dunk-Low-SP-Kentucky/Images/Nike-Dunk-Low-SP-Kentucky/Lv2/img",
@@ -54,7 +54,7 @@ export const data = {
       {
         id: 6,
         title: "Nike Dunk Low Off-White University",
-        price: 285,
+        price: 285.000,
         image: require("../acces/imagesproductos/img06.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Dunk-Low-Off-White-University-Red/Images/Nike-Dunk-Low-Off-White-University-Red/Lv2/img",
@@ -64,7 +64,7 @@ export const data = {
       {
         id: 7,
         title: "Nike Air Max 2 Light Atmos",
-        price: 360,
+        price: 360.000,
         image: require("../acces/imagesproductos/img07.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Air-Max-2-Light-Atmos/Images/Nike-Air-Max-2-Light-Atmos/Lv2/img",
@@ -74,7 +74,7 @@ export const data = {
       {
         id: 8,
         title: "Nike Air Force 1 Low CLOT Blue Silk",
-        price: 335,
+        price: 335.000,
         image: require("../acces/imagesproductos/img08.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Air-Force-1-Low-Clot-Blue-Silk/Images/Nike-Air-Force-1-Low-Clot-Blue-Silk/Lv2/img",
@@ -84,7 +84,7 @@ export const data = {
       {
         id: 9,
         title: "Nike Air Max 90 OG Volt (2020)",
-        price: 799,
+        price: 799.000,
         image: require("../acces/imagesproductos/img09.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Air-Max-90-OG-White-Particle-Grey-Volt/Images/Nike-Air-Max-90-OG-White-Particle-Grey-Volt/Lv2/img",
@@ -94,7 +94,7 @@ export const data = {
       {
         id: 10,
         title: "Nike Dunk High Varsity Maize",
-        price: 501,
+        price: 501.000,
         image: require("../acces/imagesproductos/img10.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Dunk-High-Black-Varsity-Maize/Images/Nike-Dunk-High-Black-Varsity-Maize/Lv2/img",
@@ -104,7 +104,7 @@ export const data = {
       {
         id: 11,
         title: "Nike Air Rubber Dunk Off-White UNC",
-        price: 377,
+        price: 377.000,
         image: require("../acces/imagesproductos/img11.jpg"),
         category: "nike",
         img1: "https://stockx-360.imgix.net/Nike-Air-Rubber-Dunk-Off-White-UNC/Images/Nike-Air-Rubber-Dunk-Off-White-UNC/Lv2/img",

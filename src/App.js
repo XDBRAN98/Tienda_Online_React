@@ -5,6 +5,7 @@ import 'boxicons';
 
 import { Header } from "./componentes/Header";
 import { Paginas } from "./rutas/paginas"
+import { Carrito } from "./componentes/Carrito";
 
 
 function App() {
