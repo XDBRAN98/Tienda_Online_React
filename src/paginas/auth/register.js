@@ -40,7 +40,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/register", {
+      .post("https://bootcamp-v13j.onrender.com/register", {
         Name: name,
         Email: email,
         Lastname: lastname,
