@@ -16,7 +16,9 @@ export const ProductosLista = () => {
 		productosService.getProductos().then(data => {
 			setProductos(data)
 		})
-	}, [])
+	}, [	
+		productosService
+	])
 
 	return (
 		<>
