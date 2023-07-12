@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const URL = 'http://192.168.20.27:5000/products';
+const URL = 'https://bootcamp-v13j.onrender.com/products';
 
 function useProductos() {
   const [productos, setProductos] = useState([]);
