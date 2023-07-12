@@ -8,30 +8,7 @@ import { useProductos } from "../../Hooks/UseProductos";
 
 export const ProductosLista = () => {
 
-	const productosService = useProductos()
-
-	const [productos, setProductos] = useState([])
-
-	useEffect(() => {
-		const fetchData = async () => {
-		  try {
-			const data = await productosService.getProductos();
-
-			if (Array.isArray(data)) {
-			  setProductos(data);
-			} 
-			else {
-			  console.error("La respuesta de la API no es un array válido");
-
-			}
-		  } 
-		  catch (error) {
-			console.error("Error al obtener los productos:", error);
-		  }
-		};
-	
-		fetchData();
-	  }, [productosService]);
+	const { productos } = useProductos();
 
 	return (
 		<>
