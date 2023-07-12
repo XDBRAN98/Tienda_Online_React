@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import LoginForm from '../paginas/auth/login';
 import RegistrationForm from '../paginas/auth/register';
+import AdminProfileForm from '../paginas/profile/profile';
 import { ProductosLista } from "../componentes/Productos/index"
 import { ProductoDetalles } from '../componentes/Productos/ProductoDetalles'
 
@@ -14,7 +15,9 @@ export const Paginas = () => {
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/register" element={<RegistrationForm/>}/>
             <Route path="/" element={<ProductosLista/>}/>
+            <Route path="/profile" element={<AdminProfileForm/>}/>
             // <Route path="producto/:id" element={<ProductoDetalles/>}/>
+            <Route path="/" element={<ProductoDetalles/>}/>
 
             <Route path="/cart" element={ <Cart/>}/>
         </Routes>
