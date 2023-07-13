@@ -1,20 +1,26 @@
+.registration{
+    padding: 100px;
+}
+
 .registration-form {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
+  padding: 100px;
+  background-color: #e1e1e1;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .registration-form .form-group {
-  margin-right: 15px; /* Agregamos un margen derecho para separar los elementos */
+  margin-right: 1px; /* Agregamos un margen derecho para separar los elementos */
 }
 
 .registration-form .label {
@@ -24,14 +30,13 @@
 
 .registration-form .input {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
+  border-radius: 0%;
+  width: 80%;
 }
 
 .registration-form .button {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 4px;
@@ -39,12 +44,12 @@
 }
 
 .registration-form .success-message {
-  color: green;
+  color: rgb(77, 0, 128);
   margin-top: 10px;
 }
 
 .registration-form .error-message {
-  color: red;
+  color: rgb(132, 0, 255);
   margin-top: 10px;
 }
 
