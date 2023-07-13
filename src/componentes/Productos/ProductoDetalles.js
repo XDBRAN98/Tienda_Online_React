@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { useProductos } from '../../Hooks/UseProductos';
 
 export const ProductoDetalles = () => {
+
     const { id } = useParams();
     const { productos } = useProductos();
     const producto = productos.find((item) => item.ID_Producto === Number(id));
@@ -54,16 +54,16 @@ export const ProductoDetalles = () => {
 
                     </div>
 
+                    <div className='contenedorDescripcion'>
+                        <p className='detallesDescripcion'>
+                            <span className='description'>Descripción: </span>
+                            {producto.Descripcion}
+                        </p>
+                    </div>
 
-                    <div className="description"></div>
-
-                    <p className='detallesDescripcion'>
-                        <span className='description'>Descripción: </span>
-                        {producto.Descripcion}
-                    </p>
                 </div>
             ) : (
-                <p>No se encontró el producto.</p>
+                <p className='notificacionErrorDataProducto'>Cargando producto.</p>
             )}
         </>
     );

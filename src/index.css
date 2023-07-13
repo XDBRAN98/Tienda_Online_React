@@ -26,8 +26,6 @@ code {
 }
 
 
-
-
 /*---------------------------------- Header ----------------------------------*/
 .header__primario {
   width: 97%;
@@ -51,7 +49,7 @@ code {
 }
 
 .header_icons{
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 a {
@@ -136,9 +134,9 @@ header .login box-icon {
 
 .producto {
   display: flex;
-  width: 100%;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   box-shadow: 1px 10px 10px 2px rgb(0, 0, 0, .2);
   border: 6px solid transparent;
   border-radius: 5px;
@@ -149,7 +147,14 @@ header .login box-icon {
 }
 
 .producto__img img {
-  width: 310px;
+  width: 280px;
+}
+
+.producto__footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .producto__footer h1 {
@@ -159,16 +164,11 @@ header .login box-icon {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.producto__footer p {
-  font-size: 700;
-  color: rgb(0, 0, 0, .5);
-  text-transform: uppercase;
-  font-size: 10px;
-}
-
 .producto__footer .price {
   font-size: 2rem;
-  color: #1a202c;
+
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
 }
 
 .producto .buttoms {
@@ -181,6 +181,10 @@ header .login box-icon {
   gap: 10px;
 }
 
+.buttoms{
+  margin-top:1rem;
+}
+
 .buttoms button {
   max-width: 250px;
   width: 100%;
@@ -188,7 +192,6 @@ header .login box-icon {
   color: white;
   font-weight: 600;
 }
-
 
 .buttoms div {
   display: flex;
@@ -198,7 +201,6 @@ header .login box-icon {
 
 .buttoms .btn {
   background-color: #3033d3;
-
   border: none;
   outline: 0;
   cursor: pointer;
@@ -207,11 +209,19 @@ header .login box-icon {
 
 .buttoms .btn2 {
   background-color: #08a05c;
-
   border: none;
   outline: 0;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.notificacionErrorDataProductos{
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #1a202c;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -219,6 +229,8 @@ header .login box-icon {
 /*---------------------------------- Detalles Productos ----------------------------------*/
 .detalles{
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   width: 100%;
   padding: 2rem 1rem 0 1rem;
@@ -268,19 +280,21 @@ header .login box-icon {
   margin-bottom: 2rem;
 }
 
-.detalles .description{
-  font-size: 1.5rem;
-  max-width: 1300px;
+.detalles .detallesDescripcion{
+  max-width: 1200px;
   width: 100%;
+  font-size: 1.5rem;
+  color: #30333a;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.detalles .description{
+  font-size: 2rem;
   letter-spacing: 1px;
   color: #5f5d5d;
   margin: 0 auto;
   font-weight: 500;
-}
-
-.detalles .detallesDescripcion{
-  font-size: 1.1rem;
-  color: #30333a;
 }
 
 .contenedorImagenDetalles{
@@ -295,7 +309,6 @@ header .login box-icon {
   height: 700px;
 }
 
-
 .contenedorPrecioBtcarrito{
   display: flex;
   flex-direction: column;
@@ -303,7 +316,14 @@ header .login box-icon {
   align-items: center;
 }
 
-
+.notificacionErrorDataProducto{
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #1a202c;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 /*---------------------------------- Media ----------------------------------*/
 @media only screen and (max-width: 600px) {
