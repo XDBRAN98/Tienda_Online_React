@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./profile.css";
+import { serverBackEndDireccion } from '../../rutas/serverback';
 
+
+const URL =`${serverBackEndDireccion()}/edit`;
 const usuario = JSON.parse(localStorage.getItem("user"));
+
 
 const AdminProfileForm = () => {
   const [originalEmail, setOriginalEmail] = useState(usuario.Email);
@@ -60,7 +64,7 @@ const AdminProfileForm = () => {
     };
     console.log(updatedProfile);
     axios
-      .put("http://localhost:5000/edit", updatedProfile)
+      .put(URL, updatedProfile)
       .then((response) => {
         if (response && response.data) {
           setIsEditing(false);

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./registro.css";
+import { serverBackEndDireccion } from '../../rutas/serverback';
+
+
+const URL =`${serverBackEndDireccion()}/register`;
+
 
 const RegistrationForm = () => {
   const [name, setName] = useState("");
@@ -40,7 +45,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     axios
-      .post("https://bootcamp-v13j.onrender.com/register", {
+      .post(URL, {
         Name: name,
         Email: email,
         Lastname: lastname,

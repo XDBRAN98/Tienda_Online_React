@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
+import { serverBackEndDireccion } from '../../rutas/serverback';
+
+
+const URL =`${serverBackEndDireccion()}/login`;
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -25,7 +30,7 @@ const LoginForm = () => {
       };
 
       // Realizar la solicitud POST al API
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch(URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
