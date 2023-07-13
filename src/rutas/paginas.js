@@ -1,5 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
+import { autenticacionGuard } from '../guards/guard';
+
 
 import LoginForm from '../paginas/auth/login';
 import RegistrationForm from '../paginas/auth/register';
@@ -19,7 +21,10 @@ export const Paginas = () => {
             <Route path="producto/:id" element={<ProductoDetalles/>}/>
             <Route path="/" element={<ProductoDetalles/>}/>
 
-            <Route path="/cart" element={ <Cart/>}/>
+            <Route
+          path="/cart"
+          element={autenticacionGuard(<Cart />)}
+        />
         </Routes>
     </section>
     )

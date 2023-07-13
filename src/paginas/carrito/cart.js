@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './cart.css';
-import ImageEmpty from '../../pngwing.com.png';
+import ImageEmpty from '../../acces/pngwing.com.png';
 
 const Cart = () => {
   const [items, setItems] = useState([
@@ -57,7 +57,7 @@ const Cart = () => {
     <div className="cart">
       {items.length === 0 ? (
         <div className="cart__empty">
-          <img src={ImageEmpty} />
+          <img src= {ImageEmpty}  />
           <p>No hay artículos en el carrito. </p>
           
         </div>
