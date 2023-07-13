@@ -19,7 +19,6 @@ export const Paginas = () => {
             <Route path="/" element={<ProductosLista/>}/>
             <Route path="/profile" element={<AdminProfileForm/>}/>
             <Route path="producto/:id" element={<ProductoDetalles/>}/>
-            <Route path="/" element={<ProductoDetalles/>}/>
 
             <Route
           path="/cart"
