@@ -53,7 +53,6 @@ export const ProductoDetalles = () => {
                         </button>
 
                     </div>
-
                     <div className='contenedorDescripcion'>
                         <p className='detallesDescripcion'>
                             <span className='description'>Descripción: </span>
