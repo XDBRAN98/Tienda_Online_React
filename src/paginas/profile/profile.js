@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./profile.css";
+import EditProduct from "../../componentes/Edit/Edit";
 
 const usuario = JSON.parse(localStorage.getItem("user"));
 
@@ -165,6 +166,8 @@ const AdminProfileForm = () => {
       </form>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+      <EditProduct/>
     </div>
     
   );
