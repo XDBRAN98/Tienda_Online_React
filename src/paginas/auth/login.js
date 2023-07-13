@@ -76,9 +76,6 @@ const LoginForm = () => {
             <button type="button" className="register-button">
               <Link to="/register">Register</Link>
             </button>
-            <button type="button" className="forgot-password-button" onClick={handleForgotPassword}>
-              Olvidé mi contraseña
-            </button>
           </div>
         </form>
       </div>
