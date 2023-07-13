@@ -8,17 +8,7 @@ import { useProductos } from "../../Hooks/UseProductos";
 
 export const ProductosLista = () => {
 
-	const productosService = useProductos()
-
-	const [productos, setProductos] = useState([])
-
-	useEffect(() => {
-		productosService.getProductos().then(data => {
-			setProductos(data)
-		})
-	}, [	
-		productosService
-	])
+	const { productos } = useProductos();
 
 	return (
 		<>
@@ -26,16 +16,15 @@ export const ProductosLista = () => {
 
 				{productos.map(producto => (
 
-					<div className="producto" key={producto.id}>
-						<Link to= {`/producto/${producto.id}`}>
+					<div className="producto" key={producto.ID_Producto}>
+						<Link to= {`/producto/${producto.ID_Producto}`}>
 							<div className="producto__img">
-								<img src={producto.img1} alt="" />
+								<img src={producto.Imagen_1} alt="" />
 							</div>
 						</Link>
 						<div className="producto__footer">
-							<h1>{producto.title}</h1>
-							<p>{producto.category}</p>
-							<p className="price">${producto.price} Cop</p>
+							<h1>{producto.Nombre_Producto}</h1>
+							<p className="price">${producto.Precio} Cop</p>
 						</div>
 						<div className="buttoms">
 
@@ -43,7 +32,7 @@ export const ProductosLista = () => {
 								Añadir al carrito
 							</button>
 
-								<button id="btn_productoDetalles" className="btn2" onClick={()=>{ window.location.href = `/producto/${producto.id}`}}>
+								<button id="btn_productoDetalles" className="btn2" onClick={()=>{ window.location.href = `/producto/${producto.ID_Producto}`}}>
 									Vista
 								</button>
 						</div>

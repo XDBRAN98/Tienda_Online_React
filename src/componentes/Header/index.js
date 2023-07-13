@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import 'boxicons';
 import Logo from "../../acces/logo.png";
 
 export const Header = () => {
   const location = useLocation();
-
+  
   return (
     <header className="header__primario">
       <Link to="/">
