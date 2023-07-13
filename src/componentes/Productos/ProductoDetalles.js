@@ -54,13 +54,13 @@ export const ProductoDetalles = () => {
 
                     </div>
 
+                    <div className='contenedorDescripcion'>
+                        <p className='detallesDescripcion'>
+                            <span className='description'>Descripción: </span>
+                            {producto.Descripcion}
+                        </p>
+                    </div>
 
-                    <div className="description"></div>
-
-                    <p className='detallesDescripcion'>
-                        <span className='description'>Descripción: </span>
-                        {producto.Descripcion}
-                    </p>
                 </div>
             ) : (
                 <p>No se encontró el producto.</p>

@@ -10,7 +10,7 @@ export const Header = () => {
     <header className="header__primario">
       <Link to="/">
         <div className="logo">
-          <img src={Logo} alt="" width="150" />
+          <img src={Logo} alt="" width="180" />
         </div>
       </Link>
 
