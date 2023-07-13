@@ -42,6 +42,7 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
     axios
@@ -50,8 +51,8 @@ const RegistrationForm = () => {
         Email: email,
         Lastname: lastname,
         Password: password,
-        cellphone: telefono,
-        direccion: direccion,
+        Telefono: telefono,
+        Direccion: direccion,
       })
       .then((response) => {
         if (response && response.data) {
