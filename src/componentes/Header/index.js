@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import 'boxicons';
-import Logo from "../../acces/logo.png";
+import Logo from "../../assets/logo.png";
 
 export const Header = () => {
   const location = useLocation();

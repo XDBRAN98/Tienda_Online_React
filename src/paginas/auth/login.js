@@ -64,7 +64,7 @@ const LoginForm = () => {
   };
 
   const handleForgotPassword = () => {
-    console.log('Olvidé mi contraseña');
+    console.log('Forgot password?');
   };
 
   return (

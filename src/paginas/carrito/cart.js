@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './cart.css';
-import ImageEmpty from '../../acces/pngwing.com.png';
+import ImageEmpty from '../../assets/pngwing.com.png';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -17,7 +17,7 @@ const Cart = () => {
         setItems(data.productos);
       })
       .catch(error => {
-        console.log('Error al obtener los productos del carrito:', error);
+        console.log('Error retrieving the products from the shopping cart:', error);
       });
   }, []);
 
