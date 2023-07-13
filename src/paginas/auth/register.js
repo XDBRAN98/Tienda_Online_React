@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./registro.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
-
+import { useNavigate } from 'react-router-dom';
 
 const URL =`${serverBackEndDireccion()}register`;
-
 
 const RegistrationForm = () => {
   const [name, setName] = useState("");
@@ -16,6 +15,8 @@ const RegistrationForm = () => {
   const [telefono, setTelefono] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -42,6 +43,7 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
     axios
@@ -50,13 +52,14 @@ const RegistrationForm = () => {
         Email: email,
         Lastname: lastname,
         Password: password,
-        cellphone: telefono,
-        direccion: direccion,
+        Telefono: telefono,
+        Direccion: direccion,
       })
       .then((response) => {
         if (response && response.data) {
           setSuccessMessage(response.data.message);
           setErrorMessage("");
+          navigate("/login");
         } else {
           console.error('La respuesta no contiene la propiedad "data"');
         }
