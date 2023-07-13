@@ -220,7 +220,7 @@ header .login box-icon {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 13rem 1rem 0 1rem;
+  padding: 2rem 1rem 0 1rem;
   box-sizing: border-box;
 }
 
@@ -253,40 +253,6 @@ header .login box-icon {
   cursor: pointer;
 }
 
-.detalles .grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 1rem;
-  max-width: 350px;
-}
-
-.detalles .grid > .nuevo, .size{
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 2rem;
-  font-weight: 600;
-  color: white;
-}
-
-.detalles .grid .nuevo{
-  background-color:#08a05c;
-  
-}
-
-.detalles .grid .size{
-  background-color:#f1365b;
-  display: flex;
-}
-
-.detalles .grid .size select{
-  border: none;
-  outline: 0;
-  font-size: 2rem;
-  background-color:#f1365b;
-  color: white;
-  cursor: pointer;
-}
-
 .detalles img{
   min-height: 300px;
   object-fit: contain;
@@ -302,7 +268,7 @@ header .login box-icon {
 }
 
 .detalles .description{
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   max-width: 1300px;
   width: 100%;
   letter-spacing: 1px;
@@ -311,8 +277,8 @@ header .login box-icon {
   font-weight: 500;
 }
 
-.detalles .description b{
-  font-size: 1.4rem;
+.detalles .detallesDescripcion{
+  font-size: 1.1rem;
   color: #30333a;
 }
 
@@ -324,8 +290,16 @@ header .login box-icon {
 
 .imagenProductodetalles{
 
-  width: 800px;
-  height: 800px;
+  width: 700px;
+  height: 700px;
+}
+
+
+.contenedorPrecioBtcarrito{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
