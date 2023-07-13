@@ -4,7 +4,7 @@ import './login.css';
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
 
-const URL =`${serverBackEndDireccion()}/login`;
+const URL =`${serverBackEndDireccion()}login`;
 
 
 const LoginForm = () => {

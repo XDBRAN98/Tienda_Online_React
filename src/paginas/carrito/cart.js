@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './cart.css';
 import ImageEmpty from '../../assets/pngwing.com.png';
 
 const Cart = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    { name: 'Camiseta', quantity: 1, image: '' },
+    { name: 'Pantalones', quantity: 1, image: 'url_de_la_imagen' },
+    { name: 'Zapatos', quantity: 1, image: 'url_de_la_imagen' },
+    { name: 'Bolso', quantity: 1, image: 'url_de_la_imagen' },
+    { name: 'Gorra', quantity: 1, image: 'url_de_la_imagen' },
+  ]); // Estado inicial con productos de prueba
 
   useEffect(() => {
     // Obtener el cliente ID del local storage
@@ -17,35 +23,38 @@ const Cart = () => {
         setItems(data.productos);
       })
       .catch(error => {
-        console.log('Error retrieving the products from the shopping cart:', error);
+        console.log('Error al obtener los productos del carrito:', error);
       });
   }, []);
 
   const addItemToCart = (item) => {
     const updatedItems = [...items];
-    const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
+    const existingItemIndex = updatedItems.findIndex((i) => i.name === item.name);
     if (existingItemIndex !== -1) {
-      updatedItems[existingItemIndex].producto.Cantidad += 1;
+      updatedItems[existingItemIndex].quantity += 1;
     } else {
-      updatedItems.push({ producto: { ...item.producto }, subtotal: item.subtotal });
+      updatedItems.push({ name: item.name, quantity: 1, image: item.image });
     }
     setItems(updatedItems);
   };
 
+  // Función para disminuir la cantidad de un artículo en el carrito
   const decreaseItemQuantity = (index) => {
     const updatedItems = [...items];
-    if (updatedItems[index].producto.Cantidad > 1) {
-      updatedItems[index].producto.Cantidad -= 1;
+    if (updatedItems[index].quantity > 1) {
+      updatedItems[index].quantity -= 1;
       setItems(updatedItems);
     }
   };
 
+  // Función para eliminar un artículo del carrito
   const removeItemFromCart = (index) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
 
+  // Función para vaciar el carrito
   const clearCart = () => {
     setItems([]);
   };
@@ -53,7 +62,8 @@ const Cart = () => {
   const calculateSubtotal = () => {
     let subtotal = 0;
     items.forEach((item) => {
-      subtotal += item.subtotal;
+      // Lógica para calcular el subtotal por producto (precio * cantidad)
+      subtotal += item.quantity * 10; // Reemplaza 10 con el precio real del producto
     });
     return subtotal;
   };
@@ -62,8 +72,9 @@ const Cart = () => {
     <div className="cart">
       {items.length === 0 ? (
         <div className="cart__empty">
-          <img src={ImageEmpty} alt="Empty cart" />
-          <p>No hay artículos en el carrito.</p>
+          <img src= {ImageEmpty}  />
+          <p>No hay artículos en el carrito. </p>
+          
         </div>
       ) : (
         <>
@@ -71,11 +82,12 @@ const Cart = () => {
             {items.map((item, index) => (
               <li key={index} className="cart__item">
                 <div className="cart__item-thumbnail">
-                  <img src={item.producto.image} alt="Producto" />
+                  <img src={item.image} alt="Producto" />
                 </div>
                 <div className="cart__item-info">
                   <div className="cart__item-details">
-                    <label className="cart__item-name">{item.producto.name}</label>
+                   
+                    <label className="cart__item-name">{item.name} </label>
                     <button
                       className="cart__item-remove"
                       onClick={() => removeItemFromCart(index)}
@@ -93,7 +105,7 @@ const Cart = () => {
                     <input
                       type="text"
                       className="cart__item-quantity-value"
-                      value={item.producto.Cantidad}
+                      value={item.quantity}
                       readOnly
                     />
                     <button
@@ -123,3 +135,5 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
