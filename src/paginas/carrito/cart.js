@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './cart.css';
 import ImageEmpty from '../../acces/pngwing.com.png';
 
 const Cart = () => {
-  const [items, setItems] = useState([
-    { name: 'Camiseta', quantity: 1, image: '' },
-    { name: 'Pantalones', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Zapatos', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Bolso', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Gorra', quantity: 1, image: 'url_de_la_imagen' },
-  ]); // Estado inicial con productos de prueba
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    // Aquí puedes realizar una solicitud HTTP para obtener los datos desde tu API backend
+    axios.get('URL_DE_TU_API').then((response) => {
+      setItems(response.data);
+    }).catch((error) => {
+      console.error('Error al obtener los datos:', error);
+    });
+  }, []);
+  
   // Función para agregar un artículo al carrito
   const addItemToCart = (item) => {
     const updatedItems = [...items];
