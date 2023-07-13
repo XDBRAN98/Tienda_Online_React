@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./profile.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
+import EditProduct  from '../../componentes/Edit/Edit.js'
 
 
-const URL =`${serverBackEndDireccion()}/edit`;
+const URL =`${serverBackEndDireccion()}edit`;
 const usuario = JSON.parse(localStorage.getItem("user"));
 
 
