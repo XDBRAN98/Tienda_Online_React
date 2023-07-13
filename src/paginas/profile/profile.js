@@ -1,40 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./profile.css";
 
+const usuario = JSON.parse(localStorage.getItem("user"));
+
 const AdminProfileForm = () => {
-  const [originalEmail, setOriginalEmail] = useState("");
-  const [originalPassword, setOriginalPassword] = useState("");
-  const [originalDireccion, setOriginalDireccion] = useState("");
-  const [originalTelefono, setOriginalTelefono] = useState("");
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [direccion, setDireccion] = useState("");
-  const [telefono, setTelefono] = useState("");
+  const [originalEmail, setOriginalEmail] = useState(usuario.Email);
+  const [originalPassword,] = useState(usuario.Password);
+  const [originalDireccion, setOriginalDireccion] = useState(usuario.Direccion);
+  const [originalTelefono, setOriginalTelefono] = useState(usuario.Telefono);
+  const [name, ] = useState(usuario.Nombre);
+  const [lastname,] = useState(usuario.Apellido);
+  const [email, setEmail] = useState(usuario.Email);
+  const [password, setPassword] = useState(usuario.Contraseña);
+  const [direccion, setDireccion] = useState(usuario.Direccion);
+  const [telefono, setTelefono] = useState(usuario.Telefono);
   const [isEditing, setIsEditing] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("localhost:5000")
-      .then((response) => {
-        const data = response.data;
-        setName(data.name);
-        setLastname(data.lastname);
-        setEmail(data.email);
-        setPassword(data.password);
-        setDireccion(data.direccion);
-        setTelefono(data.telefono);
-        setOriginalEmail(data.email);
-        setOriginalPassword(data.password);
-        setOriginalDireccion(data.direccion);
-        setOriginalTelefono(data.telefono);
-      })
-      .catch((error) => console.error(error));
-  }, []);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -67,18 +50,23 @@ const AdminProfileForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const updatedProfile = {
+      Email: email,
+      Password: password,
+      direccion: direccion,
+      telefono: telefono,
+    };
+
     axios
-      .post("http://localhost:5000/login/updateProfile", {
-        Email: email,
-        Password: password,
-        direccion: direccion,
-        telefono: telefono,
-      })
+      .post("http://localhost:5000//edit", updatedProfile)
       .then((response) => {
         if (response && response.data) {
           setIsEditing(false);
           setSuccessMessage(response.data.message);
           setErrorMessage("");
+          setOriginalEmail(email);
+          setOriginalDireccion(direccion);
+          setOriginalTelefono(telefono);
         } else {
           console.error('La respuesta no contiene la propiedad "data"');
         }

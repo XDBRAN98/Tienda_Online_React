@@ -37,6 +37,9 @@ const LoginForm = () => {
         const result = await response.json();
         // Aquí puedes manejar la respuesta del servidor
         console.log(result);
+        //extraer el objeto usuario de la respuesta y f¿guarlo en el localstorage
+        const { usuario } = result;
+        localStorage.setItem('user', JSON.stringify(usuario));
         const { accessToken } = result;
         // Guardar el accessToken en el localStorage
         localStorage.setItem('accessToken', accessToken);
