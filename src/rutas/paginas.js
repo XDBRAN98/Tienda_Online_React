@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import { autenticacionGuard } from '../guards/guard';
+import { autenticacionGuard ,adminGuard} from '../guards/guard';
 
 
 import LoginForm from '../paginas/auth/login';
@@ -17,7 +17,7 @@ export const Paginas = () => {
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/register" element={<RegistrationForm/>}/>
             <Route path="/" element={<ProductosLista/>}/>
-            <Route path="/profile" element={<AdminProfileForm/>}/>
+            <Route path="/profile" element={adminGuard(<AdminProfileForm />)} />
             <Route path="producto/:id" element={<ProductoDetalles/>}/>
 
             <Route
