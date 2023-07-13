@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './cart.css'; // Archivo CSS para estilos
+import './cart.css';
+import ImageEmpty from '../../pngwing.com.png';
 
 const Cart = () => {
   const [items, setItems] = useState([
@@ -55,7 +56,11 @@ const Cart = () => {
   return (
     <div className="cart">
       {items.length === 0 ? (
-        <p className="cart__empty">No hay artículos en el carrito.</p>
+        <div className="cart__empty">
+          <img src={ImageEmpty} />
+          <p>No hay artículos en el carrito. </p>
+          
+        </div>
       ) : (
         <>
           <ul className="cart__list">
