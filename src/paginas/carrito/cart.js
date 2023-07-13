@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './cart.css';
-import ImageEmpty from '../../pngwing.com.png';
+import ImageEmpty from '../../acces/pngwing.com.png';
 
 const Cart = () => {
   const [items, setItems] = useState([
