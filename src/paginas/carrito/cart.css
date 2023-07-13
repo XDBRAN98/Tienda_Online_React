@@ -4,12 +4,11 @@
   align-items: center;
   font-weight: bold;
   text-align: center;
-  height: 85vh;
+  height: 60vh;
   flex-direction: column;
   gap: 20px;
+  padding-bottom: 30px;
 }
-
-
 
 .cart__empty img {
   width: 50vh;
@@ -125,6 +124,7 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .cart__buy-button,
