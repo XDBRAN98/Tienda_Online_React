@@ -18,9 +18,13 @@ export const Header = () => {
 
   const logout = () => {
     // Aquí va la lógica para realizar el logout
-    // Al final, no olvides remover el usuario del local storage
-    localStorage.removeItem('user');
+    // Al final, borramos todos los datos del local storage
+    localStorage.clear();
     setUserRole(null);
+    // Redireccionamos a la página de inicio y recargamos la página
+    
+    window.location.reload();
+    window.location.href = "/";
   }
 
   return (
