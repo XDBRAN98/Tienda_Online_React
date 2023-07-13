@@ -57,7 +57,7 @@ const Cart = () => {
     <div className="cart">
       {items.length === 0 ? (
         <div className="cart__empty">
-          <img src={ImageEmpty} />
+          <img src= {ImageEmpty}  />
           <p>No hay artículos en el carrito. </p>
           
         </div>
