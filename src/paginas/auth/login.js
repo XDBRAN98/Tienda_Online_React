@@ -20,12 +20,12 @@ const LoginForm = () => {
     try {
       // Crear el objeto de datos que se enviará en la solicitud
       const data = {
-        email: email,
-        password: password
+        Email: email,
+        Password: password
       };
 
       // Realizar la solicitud POST al API
-      const response = await fetch('https://bootcamp-v13j.onrender.com/login', {
+      const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,6 +37,9 @@ const LoginForm = () => {
         const result = await response.json();
         // Aquí puedes manejar la respuesta del servidor
         console.log(result);
+        //extraer el objeto usuario de la respuesta y f¿guarlo en el localstorage
+        const { usuario } = result;
+        localStorage.setItem('user', JSON.stringify(usuario));
         const { accessToken } = result;
         // Guardar el accessToken en el localStorage
         localStorage.setItem('accessToken', accessToken);
