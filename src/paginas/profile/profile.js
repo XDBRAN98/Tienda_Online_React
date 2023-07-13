@@ -82,25 +82,27 @@ const AdminProfileForm = () => {
   };
 
   return (
-    <div>
+    <div className = "registration">
       <form onSubmit={handleSubmit} className="registration-form">
-        <div className="form-group">
-          <label className="label">Nombre:</label>
-          <input
-            type="text"
-            value={name}
-            disabled
-            className="input"
-          />
-        </div>
-        <div className="form-group">
-          <label className="label">Apellidos:</label>
-          <input
-            type="text"
-            value={lastname}
-            disabled
-            className="input"
-          />
+        <div className="fullName">
+            <div className="form-group">
+              <label className="label">Nombre:</label>
+              <input
+                type="text"
+                value={name}
+                disabled
+                className="input"
+              />
+            </div>
+            <div className="form-group">
+              <label className="label">Apellidos:</label>
+              <input
+                type="text"
+                value={lastname}
+                disabled
+                className="input"
+              />
+            </div>
         </div>
         <div className="form-group">
           <label className="label">Email:</label>
@@ -160,6 +162,7 @@ const AdminProfileForm = () => {
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
+    
   );
 };
 
