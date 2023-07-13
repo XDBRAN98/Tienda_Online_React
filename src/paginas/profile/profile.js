@@ -87,7 +87,9 @@ const AdminProfileForm = () => {
     <div className = "registration">
       <form onSubmit={handleSubmit} className="registration-form">
         <div className="fullName">
+          
             <div className="form-group">
+            <label>Informacion Personal</label>
               <label className="label">Nombre:</label>
               <input
                 type="text"

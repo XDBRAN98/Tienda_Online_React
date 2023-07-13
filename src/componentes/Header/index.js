@@ -17,7 +17,7 @@ export const Header = () => {
       <div className="header_icons">
         <div className="cart">
           <Link to={"/cart"}>
-          <box-icon name="cart"></box-icon>
+          <box-icon name="cart" size ="smallest"></box-icon>
           </Link>
           <span className="item__total">0</span>
         </div>
