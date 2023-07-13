@@ -51,14 +51,16 @@ const AdminProfileForm = () => {
     e.preventDefault();
 
     const updatedProfile = {
+      Name: name,
+      Lastname: lastname,
       Email: email,
       Password: password,
-      direccion: direccion,
-      telefono: telefono,
+      Direccion: direccion,
+      Telefono: telefono,
     };
-
+    console.log(updatedProfile);
     axios
-      .post("http://localhost:5000//edit", updatedProfile)
+      .put("http://localhost:5000/edit", updatedProfile)
       .then((response) => {
         if (response && response.data) {
           setIsEditing(false);
