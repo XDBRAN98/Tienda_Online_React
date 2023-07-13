@@ -169,6 +169,8 @@ const AdminProfileForm = () => {
       </form>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+      <EditProduct/>
     </div>
     
   );
