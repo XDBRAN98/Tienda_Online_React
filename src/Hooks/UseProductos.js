@@ -1,12 +1,9 @@
-
+import { useState, useEffect } from 'react';
 
 
 //const URL = 'https://bootcamp-v13j.onrender.com/products';
 const URL ='http://192.168.20.27:5000/products/';
 
-
-
-import { useState, useEffect } from 'react';
 
 function useProductos() {
   const [productos, setProductos] = useState([]);
