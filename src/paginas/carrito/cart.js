@@ -1,84 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './cart.css';
-import axios from 'axios';
+import ImageEmpty from '../../acces/pngwing.com.png';
+
 const Cart = () => {
-  const [items, setItems] = useState([
-    { name: 'Camiseta', quantity: 1, image: '' },
-    { name: 'Pantalones', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Zapatos', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Bolso', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Gorra', quantity: 1, image: 'url_de_la_imagen' },
-  ]); // Estado inicial con productos de prueba
+  const [items, setItems] = useState([]);
 
-  const handleButtonPress = async () => {
-    const formData = {
-      line_items: [
-        {
-          price_data: {
-            product_data: {
-              name: 'Carrito de productos',
-              description: 'Cobro por productos en el carrito',
-            },
-            currency: 'usd',
-            unit_amount: calculateSubtotal()//200.00,
-        
-          },
-          quantity: 1
-        }
-      ]
-    }
+  useEffect(() => {
+    // Obtener el cliente ID del local storage
+    const clientId = localStorage.getItem('clienteId');
 
-    try {
-      axios.post('http://localhost:5000/checkout', formData)
-        .then(res => {
-          console.log(res.data.result);
-          if(res.data.result) {
-            window.location.href = res.data.result.url;
-          }
-        })
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  // Función para agregar un artículo al carrito
+    // Realizar la solicitud a la API utilizando el cliente ID
+    fetch(`http://localhost:3000/carrito/${clientId}`)
+      .then(response => response.json())
+      .then(data => {
+        // Actualizar el estado con los productos recibidos de la API
+        setItems(data.productos);
+      })
+      .catch(error => {
+        console.log('Error al obtener los productos del carrito:', error);
+      });
+  }, []);
+
   const addItemToCart = (item) => {
     const updatedItems = [...items];
-    const existingItemIndex = updatedItems.findIndex((i) => i.name === item.name);
+    const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
     if (existingItemIndex !== -1) {
-      updatedItems[existingItemIndex].quantity += 1;
+      updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
-      updatedItems.push({ name: item.name, quantity: 1, image: item.image });
+      updatedItems.push({ producto: { ...item.producto }, subtotal: item.subtotal });
     }
     setItems(updatedItems);
   };
 
-  // Función para disminuir la cantidad de un artículo en el carrito
   const decreaseItemQuantity = (index) => {
     const updatedItems = [...items];
-    if (updatedItems[index].quantity > 1) {
-      updatedItems[index].quantity -= 1;
+    if (updatedItems[index].producto.Cantidad > 1) {
+      updatedItems[index].producto.Cantidad -= 1;
       setItems(updatedItems);
     }
   };
 
-
-  // Función para eliminar un artículo del carrito
   const removeItemFromCart = (index) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
 
-  // Función para vaciar el carrito
   const clearCart = () => {
     setItems([]);
   };
 
   const calculateSubtotal = () => {
-    var subtotal = 0;
+    let subtotal = 0;
     items.forEach((item) => {
-      // Lógica para calcular el subtotal por producto (precio * cantidad)
-      subtotal += item.quantity * 100; // Reemplaza 10 con el precio real del producto
+      subtotal += item.subtotal;
     });
     return subtotal;
   };
@@ -87,8 +62,8 @@ const Cart = () => {
     <div className="cart">
       {items.length === 0 ? (
         <div className="cart__empty">
-          <p>No hay artículos en el carrito. </p>
-          
+          <img src={ImageEmpty} alt="Empty cart" />
+          <p>No hay artículos en el carrito.</p>
         </div>
       ) : (
         <>
@@ -96,12 +71,11 @@ const Cart = () => {
             {items.map((item, index) => (
               <li key={index} className="cart__item">
                 <div className="cart__item-thumbnail">
-                  <img src={item.image} alt="Producto" />
+                  <img src={item.producto.image} alt="Producto" />
                 </div>
                 <div className="cart__item-info">
                   <div className="cart__item-details">
-                   
-                    <label className="cart__item-name">{item.name} </label>
+                    <label className="cart__item-name">{item.producto.name}</label>
                     <button
                       className="cart__item-remove"
                       onClick={() => removeItemFromCart(index)}
@@ -119,7 +93,7 @@ const Cart = () => {
                     <input
                       type="text"
                       className="cart__item-quantity-value"
-                      value={item.quantity}
+                      value={item.producto.Cantidad}
                       readOnly
                     />
                     <button
@@ -137,8 +111,7 @@ const Cart = () => {
             Subtotal: ${calculateSubtotal()}
           </div>
           <div className="cart__buttons">
-            <button  onClick={handleButtonPress} className="cart__buy-button">Comprar</button>
-            
+            <button className="cart__buy-button">Comprar</button>
             <button className="cart__clear cart__clear--red" onClick={clearCart}>
               Vaciar carrito
             </button>
@@ -150,4 +123,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
