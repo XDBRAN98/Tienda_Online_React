@@ -73,13 +73,3 @@
    background-color: #e0e0e0;
    box-shadow: 0 5px 10px #000000a4;
 }
-
-.editModal{
-    position: absolute;
-    display: flex;
-    top: 100vh;
-    background-color: aqua;
-    width: 200PX;
-    height: 200PX;
-    display: none;
-}

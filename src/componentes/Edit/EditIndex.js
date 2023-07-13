@@ -12,7 +12,7 @@ export const ProductsAdmin = () => {
 
             {productos.map(producto => (
                 <div className="tableElemet" key={producto.ID_Producto}>
-                    <Link className="tableElemetLink" to={`#`} >
+                    <Link className="tableElemetLink" to={`/login`}>
                         <div className="tableElemetId">{producto.ID_Producto}</div>
                         <div className="tableElementImage">
                             <img src={producto.Imagen_1} alt="" />
