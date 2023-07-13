@@ -4,7 +4,7 @@ import "./registro.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
 
-const URL =`${serverBackEndDireccion()}/register`;
+const URL =`${serverBackEndDireccion()}register`;
 
 
 const RegistrationForm = () => {
