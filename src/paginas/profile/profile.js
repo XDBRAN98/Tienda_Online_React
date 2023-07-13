@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./profile.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
-import EditProduct  from '../../componentes/Edit/Edit.js'
+import EditProduct from '../../componentes/Edit/Edit'
+
 
 
 const URL =`${serverBackEndDireccion()}edit`;
