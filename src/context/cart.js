@@ -5,7 +5,7 @@ import { useState } from "react";
 import { serverBackEndDireccion } from '../rutas/serverback';
 
 const clienteId = JSON.parse(localStorage.getItem('user'))?.ID_Usuario;
-const URL =`${serverBackEndDireccion()}carrito`;
+const URLServer =`${serverBackEndDireccion()}carrito`;
 const CartContext = createContext(null);
 
 function CartProvider ({children}) {
@@ -17,7 +17,7 @@ function CartProvider ({children}) {
     }, []);
 
     const loadCart = async () => {
-        const response = await fetch(`${URL}/${clienteId}`);
+        const response = await fetch(`${URLServer}/${clienteId}`);
         const data = await response.json();
         setCart(data);
         loadTotalProducts(data.productos);
@@ -56,7 +56,7 @@ function CartProvider ({children}) {
             })
         } else {
             if (quantity < 1) return;
-            newCart = [...cart.productos, { producto : {ID_Producto, Nombre_Producto, Precio, quantity}, subTotal: Precio * quantity }];
+            newCart = [...cart.productos, { producto : {ID_Producto, Nombre_Producto, Precio, Cantidad: quantity}, subTotal: Precio * quantity }];
             setCart((prev) => {
                 return {
                     ...prev,
@@ -82,8 +82,7 @@ function CartProvider ({children}) {
     };
 
     const clear = () => {
-        setCart([]);
-        setTotal(0);
+        setCart({ productos: [] });
     }
 
     const value = { changeCart, removeItem, clear, cart, total};

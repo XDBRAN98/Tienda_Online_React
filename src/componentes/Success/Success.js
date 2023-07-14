@@ -6,7 +6,7 @@ import { BsFillHandThumbsUpFill } from 'react-icons/bs';
 
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
-const URLS = `${serverBackEndDireccion()}carrito/vaciar/`;
+const URLServer = `${serverBackEndDireccion()}carrito/vaciar/`;
 
 
 function postOrder() {
@@ -16,7 +16,7 @@ function postOrder() {
 function Success() {
   useEffect(() => {
     const clienteId = JSON.parse(localStorage.getItem('user'));
-    const URL = `${URLS}${clienteId.ID_Usuario}`;
+    const URL = `${URLServer}${clienteId.ID_Usuario}`;
 
     fetch(URL, {
       method: 'DELETE',

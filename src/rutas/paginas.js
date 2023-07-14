@@ -15,7 +15,7 @@ export const Paginas = () => {
     <section>
       <Routes>
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/succes" element={<Success/>} />
+        <Route path="/succes" element={<Success />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/" element={<ProductosLista />} />
         <Route path="/profile" element={adminGuard(<AdminProfileForm />)} />

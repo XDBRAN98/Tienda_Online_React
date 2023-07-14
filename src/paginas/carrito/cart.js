@@ -9,7 +9,7 @@ import { clear } from '@testing-library/user-event/dist/clear';
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
 
-const URL =`${serverBackEndDireccion()}`;
+const URLServer =`${serverBackEndDireccion()}`;
 
 
 const Cart = () => {
@@ -20,7 +20,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(`${URL}${clienteId}`);
+        const response = await fetch(`${URL}carrito/${clienteId}`);
         const data = await response.json();
         setItems(data.productos);
       } catch (error) {
@@ -52,7 +52,7 @@ const Cart = () => {
     
 
     try {
-      axios.post(`${URL}checkout`, formData)
+      axios.post(`${URLServer}checkout`, formData)
         .then((res) => {
           console.log(res.data.result);
           if (res.data.result) {
@@ -83,6 +83,7 @@ const Cart = () => {
   };
 
   const clearCart = () => {
+    cart.clear();
     setItems([]);
   };
 
