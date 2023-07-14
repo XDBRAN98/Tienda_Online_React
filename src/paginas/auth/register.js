@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./registro.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
-
+import { useNavigate } from 'react-router-dom';
 // URL de la API para el registro
 const URL =`${serverBackEndDireccion()}register`;
 
@@ -16,6 +16,8 @@ const RegistrationForm = () => {
   const [telefono, setTelefono] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  
+  const navigate = useNavigate();
 
   // Funciones para manejar el cambio de cada campo del formulario
   const handleNameChange = (e) => {
@@ -44,6 +46,7 @@ const RegistrationForm = () => {
 
   // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
     axios
@@ -52,13 +55,14 @@ const RegistrationForm = () => {
         Email: email,
         Lastname: lastname,
         Password: password,
-        cellphone: telefono,
-        direccion: direccion,
+        Telefono: telefono,
+        Direccion: direccion,
       })
       .then((response) => {
         if (response && response.data) {
           setSuccessMessage(response.data.message);
           setErrorMessage("");
+          navigate("/login");
         } else {
           console.error('La respuesta no contiene la propiedad "data"');
         }

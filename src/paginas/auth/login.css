@@ -1,3 +1,7 @@
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -6,7 +10,6 @@
     min-height: 70vh;
     background: linear-gradient(rgba(7, 21, 104, 0.8), rgba(180, 92, 92, 0.5));    
     background-color: #d1dde8;
-
   }
   
   .login-form {
@@ -27,11 +30,14 @@
     font-weight: bold;
   }
   
-  input {
+  .login-container input{
+    box-sizing: border-box;
+    display: block;
     width: 100%;
     padding: 10px;
+
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 6px;
   }
   
   .login-button {
@@ -44,6 +50,9 @@
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 1rem;
+    
+    border-radius: 6px;
   }
   
   .login-button:hover {

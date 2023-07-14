@@ -4,22 +4,23 @@ import ImageEmpty from '../../acces/pngwing.com.png';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
+  const clienteId = JSON.parse(localStorage.getItem('user'))?.ID_Usuario;
 
   useEffect(() => {
-    // Obtener el cliente ID del local storage
-    const clientId = localStorage.getItem('clienteId');
-
-    // Realizar la solicitud a la API utilizando el cliente ID
-    fetch(`http://localhost:3000/carrito/${clientId}`)
-      .then(response => response.json())
-      .then(data => {
-        // Actualizar el estado con los productos recibidos de la API
+    const fetchCartItems = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/carrito/${clienteId}`);
+        const data = await response.json();
         setItems(data.productos);
-      })
-      .catch(error => {
-        console.log('Error al obtener los productos del carrito:', error);
-      });
-  }, []);
+      } catch (error) {
+        console.error('Error al obtener los artículos del carrito:', error);
+      }
+    };
+
+    if (clienteId) {
+      fetchCartItems();
+    }
+  }, [clienteId]);
 
   const addItemToCart = (item) => {
     // Añadir un artículo al carrito
@@ -30,7 +31,7 @@ const Cart = () => {
       updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
       // Si el artículo no existe en el carrito, agregarlo
-      updatedItems.push({ producto: { ...item.producto }, subtotal: item.subtotal });
+      updatedItems.push({ producto: { ...item.producto, Cantidad: 1 }, subtotal: item.subtotal });
     }
     setItems(updatedItems);
   };
@@ -70,7 +71,7 @@ const Cart = () => {
       {items.length === 0 ? (
         // Mostrar mensaje de carrito vacío si no hay artículos
         <div className="cart__empty">
-          <img src={ImageEmpty} alt="Empty cart" />
+          <img src={ImageEmpty} alt="Carrito vacío" />
           <p>No hay artículos en el carrito.</p>
         </div>
       ) : (
@@ -80,11 +81,11 @@ const Cart = () => {
             {items.map((item, index) => (
               <li key={index} className="cart__item">
                 <div className="cart__item-thumbnail">
-                  <img src={item.producto.image} alt="Producto" />
+                  <img src={item.producto.Imagen} alt="Producto" />
                 </div>
                 <div className="cart__item-info">
                   <div className="cart__item-details">
-                    <label className="cart__item-name">{item.producto.name}</label>
+                    <label className="cart__item-name">{item.producto.Nombre}</label>
                     <button
                       className="cart__item-remove"
                       onClick={() => removeItemFromCart(index)}

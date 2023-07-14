@@ -22,10 +22,6 @@ export const Header = () => {
     // Limpiar los datos del local storage y restablecer el rol del usuario
     localStorage.clear();
     setUserRole(null);
-
-    // Recargar la página y redirigir al inicio
-    window.location.reload();
-    window.location.href = "/";
   }
 
   return (
@@ -35,11 +31,10 @@ export const Header = () => {
           <img src={Logo} alt="" width="200" />
         </div>
       </Link>
-
       <div className="header_icons">
         <div className="cart">
           <Link to={"/cart"}>
-            <box-icon name="cart" size ="smallest"></box-icon>
+            <box-icon name="cart" size="smallest"></box-icon>
           </Link>
           <span className="item__total">0</span>
         </div>
@@ -47,16 +42,19 @@ export const Header = () => {
         {userRole === 1 ? (
           // Mostrar opciones adicionales para el rol de usuario 1 (administrador)
           <>
-            <Link to="/profile">
-              <div className="profile">
+            <div className="profile">
+              <Link to="/profile">
                 <box-icon name="user"></box-icon>
-              </div>
-            </Link>
-            <button onClick={logout}>
-              <div className="logout">
-                <box-icon name="log-out"></box-icon>
-              </div>
-            </button>
+              </Link>
+            </div>
+
+            <div className="logout">
+              <button className="logoutBt" onClick={logout}>
+                <div className="logout">
+                  <box-icon name="log-out"></box-icon>
+                </div>
+              </button>
+            </div>
           </>
         ) : userRole === 2 ? (
           // Mostrar opción de logout para el rol de usuario 2 (cliente)
