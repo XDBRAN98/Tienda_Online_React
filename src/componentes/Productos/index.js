@@ -11,7 +11,8 @@ const cliente = JSON.parse(localStorage.getItem('user'));
 const URL = `${serverBackEndDireccion()}cart/add`;
 
 export const ProductosLista = () => {
-    const { productos } = useProductos();
+	// Obtener la lista de productos utilizando el hook useProductos
+	const { productos } = useProductos();
 
     const [cartItems, setCartItems] = useState([]);
 
@@ -97,3 +98,4 @@ export const ProductosLista = () => {
         </>
     );
 };
+
