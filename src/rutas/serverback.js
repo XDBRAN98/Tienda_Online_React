@@ -1,5 +1,5 @@
 export function serverBackEndDireccion() {
-    return ('http://192.168.20.27:5000/')
+    return ('https://bootcamp-v13j.onrender.com/')
 }
 
 //'https://bootcamp-v13j.onrender.com/'
