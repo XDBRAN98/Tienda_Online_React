@@ -1,5 +1,7 @@
 /* registro.css */
-
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
 .registration-form {
     display: flex;
     flex-direction: column;

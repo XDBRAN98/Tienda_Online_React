@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './Modal.css';
 
 const Modal = ({ selectedProduct, setIsModalOpen }) => {
+  
   const [productData, setProductData] = useState({ ...selectedProduct });
 
 
