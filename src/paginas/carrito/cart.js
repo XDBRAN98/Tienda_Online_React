@@ -1,12 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import './cart.css';
+<<<<<<< HEAD
 import axios from 'axios';
 import ImageEmpty from '../../acces/pngwing.com.png';
 import { useCart } from '../../context/cart';
 import { clear } from '@testing-library/user-event/dist/clear';
 
 
+=======
+import ImageEmpty from '../../acces/pngwing.com.png';
+>>>>>>> parent of 3a2673a (Merge pull request #20 from XDBRAN98/add)
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -29,6 +33,7 @@ const Cart = () => {
     }
   }, [clienteId]);
 
+<<<<<<< HEAD
   const handleButtonPress = async () => {
     const formData = {
       line_items: [
@@ -71,6 +76,37 @@ const Cart = () => {
     cart.changeCart(producto, -1);
   };
 
+=======
+  const addItemToCart = (item) => {
+    // Añadir un artículo al carrito
+    const updatedItems = [...items];
+    const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
+    if (existingItemIndex !== -1) {
+      // Si el artículo ya existe en el carrito, incrementar la cantidad
+      updatedItems[existingItemIndex].producto.Cantidad += 1;
+    } else {
+      // Si el artículo no existe en el carrito, agregarlo
+      updatedItems.push({ producto: { ...item.producto, Cantidad: 1 }, subtotal: item.subtotal });
+    }
+    setItems(updatedItems);
+  };
+
+  const decreaseItemQuantity = (index) => {
+    // Disminuir la cantidad de un artículo en el carrito
+    const updatedItems = [...items];
+    if (updatedItems[index].producto.Cantidad > 1) {
+      updatedItems[index].producto.Cantidad -= 1;
+      setItems(updatedItems);
+    }
+  };
+
+  const removeItemFromCart = (index) => {
+    // Eliminar un artículo del carrito
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
+  };
+>>>>>>> parent of 3a2673a (Merge pull request #20 from XDBRAN98/add)
 
   
 
@@ -81,10 +117,12 @@ const Cart = () => {
   };
 
   const clearCart = () => {
+    // Vaciar el carrito
     setItems([]);
   };
 
   const calculateSubtotal = () => {
+    // Calcular el subtotal de todos los artículos en el carrito
     let subtotal = 0;
     cart?.cart?.productos?.forEach((item) => {
       subtotal += item.producto.Precio * item.producto.Cantidad;
@@ -94,13 +132,19 @@ const Cart = () => {
 
   return (
     <div className="cart">
+<<<<<<< HEAD
       {cart?.cart?.productos.length === 0 ? (
+=======
+      {items.length === 0 ? (
+        // Mostrar mensaje de carrito vacío si no hay artículos
+>>>>>>> parent of 3a2673a (Merge pull request #20 from XDBRAN98/add)
         <div className="cart__empty">
           <img src={ImageEmpty} alt="Carrito vacío" />
           <p>No hay artículos en el carrito.</p>
         </div>
       ) : (
         <>
+          {/* Mostrar la lista de artículos en el carrito */}
           <ul className="cart__list">
             {cart.cart?.productos.map((item, index) => (
               <li key={index} className="cart__item">
@@ -112,7 +156,11 @@ const Cart = () => {
                     <label className="cart__item-name">{item.producto.Nombre}</label>
                     <button
                       className="cart__item-remove"
+<<<<<<< HEAD
                       onClick={() => removeItemFromCart(item.producto.ID_Producto)}
+=======
+                      onClick={() => removeItemFromCart(index)}
+>>>>>>> parent of 3a2673a (Merge pull request #20 from XDBRAN98/add)
                     >
                       Eliminar
                     </button>
@@ -145,8 +193,13 @@ const Cart = () => {
             Subtotal: ${calculateSubtotal()}
           </div>
           <div className="cart__buttons">
+<<<<<<< HEAD
             <button className="cart__buy-button" onClick={handleButtonPress}>Comprar</button>
             <button className="cart_clear cart_clear--red" onClick={clearCart}>
+=======
+            <button className="cart__buy-button">Comprar</button>
+            <button className="cart__clear cart__clear--red" onClick={clearCart}>
+>>>>>>> parent of 3a2673a (Merge pull request #20 from XDBRAN98/add)
               Vaciar carrito
             </button>
           </div>
