@@ -22,6 +22,10 @@ export const Header = () => {
     // Limpiar los datos del local storage y restablecer el rol del usuario
     localStorage.clear();
     setUserRole(null);
+        // Redireccionamos a la página de inicio y recargamos la página
+    
+    window.location.reload();
+    window.location.href = "/";
   }
 
   return (
