@@ -3,16 +3,16 @@ h1{
 }
 
 .registration-form {
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   flex-direction: row;
   justify-content: center;
   font-family: "Arial", sans-serif;
-  width: 100%;
-  max-width: 800px;
+  width: 80%;
+  padding: 20px;
   margin-top: 80px;
   margin-bottom: 80px;
-  padding: 90px;
   background: linear-gradient(rgba(73, 130, 194, 0.8), rgba(118, 192, 171, 0.5));
   background-color: #aac0dc;
   border: #000000;
