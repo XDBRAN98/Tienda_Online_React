@@ -1,45 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './cart.css';
 import ImageEmpty from '../../acces/pngwing.com.png';
 
 const Cart = () => {
-  const [items, setItems] = useState([
-    { name: 'Camiseta', quantity: 1, image: '' },
-    { name: 'Pantalones', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Zapatos', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Bolso', quantity: 1, image: 'url_de_la_imagen' },
-    { name: 'Gorra', quantity: 1, image: 'url_de_la_imagen' },
-  ]); // Estado inicial con productos de prueba
+  const [items, setItems] = useState([]);
+  const clienteId = JSON.parse(localStorage.getItem('user'))?.ID_Usuario;
 
-  // Función para agregar un artículo al carrito
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/carrito/${clienteId}`);
+        const data = await response.json();
+        setItems(data.productos);
+      } catch (error) {
+        console.error('Error al obtener los artículos del carrito:', error);
+      }
+    };
+
+    if (clienteId) {
+      fetchCartItems();
+    }
+  }, [clienteId]);
+
   const addItemToCart = (item) => {
     const updatedItems = [...items];
-    const existingItemIndex = updatedItems.findIndex((i) => i.name === item.name);
+    const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
     if (existingItemIndex !== -1) {
-      updatedItems[existingItemIndex].quantity += 1;
+      updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
-      updatedItems.push({ name: item.name, quantity: 1, image: item.image });
+      updatedItems.push({ producto: { ...item.producto, Cantidad: 1 }, subtotal: item.subtotal });
     }
     setItems(updatedItems);
   };
 
-  // Función para disminuir la cantidad de un artículo en el carrito
   const decreaseItemQuantity = (index) => {
     const updatedItems = [...items];
-    if (updatedItems[index].quantity > 1) {
-      updatedItems[index].quantity -= 1;
+    if (updatedItems[index].producto.Cantidad > 1) {
+      updatedItems[index].producto.Cantidad -= 1;
       setItems(updatedItems);
     }
   };
 
-  // Función para eliminar un artículo del carrito
   const removeItemFromCart = (index) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
 
-  // Función para vaciar el carrito
   const clearCart = () => {
     setItems([]);
   };
@@ -47,8 +54,7 @@ const Cart = () => {
   const calculateSubtotal = () => {
     let subtotal = 0;
     items.forEach((item) => {
-      // Lógica para calcular el subtotal por producto (precio * cantidad)
-      subtotal += item.quantity * 10; // Reemplaza 10 con el precio real del producto
+      subtotal += item.subtotal;
     });
     return subtotal;
   };
@@ -57,9 +63,8 @@ const Cart = () => {
     <div className="cart">
       {items.length === 0 ? (
         <div className="cart__empty">
-          <img src= {ImageEmpty}  />
-          <p>No hay artículos en el carrito. </p>
-          
+          <img src={ImageEmpty} alt="Carrito vacío" />
+          <p>No hay artículos en el carrito.</p>
         </div>
       ) : (
         <>
@@ -67,12 +72,11 @@ const Cart = () => {
             {items.map((item, index) => (
               <li key={index} className="cart__item">
                 <div className="cart__item-thumbnail">
-                  <img src={item.image} alt="Producto" />
+                  <img src={item.producto.Imagen} alt="Producto" />
                 </div>
                 <div className="cart__item-info">
                   <div className="cart__item-details">
-                   
-                    <label className="cart__item-name">{item.name} </label>
+                    <label className="cart__item-name">{item.producto.Nombre}</label>
                     <button
                       className="cart__item-remove"
                       onClick={() => removeItemFromCart(index)}
@@ -90,7 +94,7 @@ const Cart = () => {
                     <input
                       type="text"
                       className="cart__item-quantity-value"
-                      value={item.quantity}
+                      value={item.producto.Cantidad}
                       readOnly
                     />
                     <button
@@ -120,5 +124,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
