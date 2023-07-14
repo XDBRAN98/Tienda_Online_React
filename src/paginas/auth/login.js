@@ -50,13 +50,13 @@ const LoginForm = () => {
         setTimeout(() => {
           navigate('/');
           window.location.reload();
-        }, 2000);
+        }, 4000);
       } else {
         // Configurar mensaje de error y recargar la página
         setMessage('Credenciales incorrectas, vuelve a intentarlo.');
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 4000);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -70,7 +70,7 @@ const LoginForm = () => {
   return (
     <div>
       <div className="login-container">
-        {message && <p>{message}</p>}
+        {message && <p className = 'loginMessage'>{message}</p>}
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label>Email:</label>

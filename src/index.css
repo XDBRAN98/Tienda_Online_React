@@ -182,7 +182,6 @@ header ul li a {
 
 .producto__footer .price {
   font-size: 2rem;
-
   color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
 }
@@ -287,6 +286,23 @@ header ul li a {
   object-fit: contain;
   margin-top:  -7rem;
   z-index: -1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;  
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 40px;
+  height: 40px;
+  background: #333;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .detalles input{

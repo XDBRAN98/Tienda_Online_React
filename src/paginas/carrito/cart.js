@@ -28,9 +28,9 @@ const Cart = () => {
     const updatedItems = [...items];
     const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
     if (existingItemIndex !== -1) {
-      updatedItems[existingItemIndex].producto.Cantidad += item.producto.Cantidad;
+      updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
-      updatedItems.push({ producto: { ...item.producto, Cantidad: item.producto.Cantidad }, subtotal: item.subtotal });
+      updatedItems.push({ producto: { ...item.producto, Cantidad: 1 }, subtotal: item.subtotal });
     }
     setItems(updatedItems);
   };
@@ -66,23 +66,24 @@ const Cart = () => {
 
   const decreaseItemQuantity = (index) => {
     const updatedItems = [...items];
-    if (updatedItems[index].producto.Cantidad > 0) {
+    if (updatedItems[index].producto.Cantidad > 1) {
       updatedItems[index].producto.Cantidad -= 1;
       setItems(updatedItems);
     }
   };
 
-  const deleteItemFromCart = async (index) => {
-    const productoId = items[index].producto.ID_Producto;
-    try {
-      await axios.delete(`http://localhost:5000/carrito/${clienteId}/${productoId}/${items[index].producto.Cantidad}`);
-      const updatedItems = [...items];
-      updatedItems.splice(index, 1);
-      setItems(updatedItems);
-    } catch (error) {
-      console.error('Error al eliminar el producto del carrito:', error);
-    }
-  };
+const deleteItemFromCart = async (index) => {
+  const productoId = items[index].producto.ID_Producto;
+  try {
+    await axios.delete(`http://localhost:5000/carrito/${clienteId}/${productoId}`);
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
+  } catch (error) {
+    console.error('Error al eliminar el producto del carrito:', error);
+  }
+};
+
 
   const clearCart = () => {
     setItems([]);
@@ -115,11 +116,12 @@ const Cart = () => {
                   <div className="cart__item-details">
                     <label className="cart__item-name">{item.producto.Nombre_Producto}</label>
                     <button
-                      className="cart__item-remove"
-                      onClick={() => deleteItemFromCart(item.id)}
-                    >
-                      Eliminar
-                    </button>
+  className="cart__item-remove"
+  onClick={() => deleteItemFromCart(index)}
+>
+  Eliminar
+</button>
+
                   </div>
                   <div className="cart__item-quantity">
                     <button
