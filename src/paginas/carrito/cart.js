@@ -8,7 +8,7 @@ import { clear } from '@testing-library/user-event/dist/clear';
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
 
-const URL =`${serverBackEndDireccion()}`;
+const URLServer =`${serverBackEndDireccion()}`;
 
 =======
 import axios from 'axios';
@@ -21,7 +21,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(`${URL}${clienteId}`);
+        const response = await fetch(`${URL}carrito/${clienteId}`);
         const data = await response.json();
         console.log(data);
         setItems(data.productos);
@@ -64,7 +64,6 @@ const Cart = () => {
     }
 
     try {
-<<<<<<< HEAD
       axios.post(`${URL}checkout`, formData)
         .then((res) => {
           console.log(res.data.result);
@@ -110,6 +109,7 @@ const deleteItemFromCart = async (index) => {
 
 
   const clearCart = () => {
+    cart.clear();
     setItems([]);
   };
 
