@@ -21,6 +21,10 @@ export const Header = () => {
     // Al final, no olvides remover el usuario del local storage
     localStorage.removeItem('user');
     setUserRole(null);
+        // Redireccionamos a la página de inicio y recargamos la página
+    
+    window.location.reload();
+    window.location.href = "/";
   }
 
   return (
