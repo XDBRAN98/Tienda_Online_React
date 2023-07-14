@@ -8,12 +8,14 @@ import AdminProfileForm from "../paginas/profile/profile";
 import { ProductosLista } from "../componentes/Productos/index";
 import { ProductoDetalles } from "../componentes/Productos/ProductoDetalles";
 import Cart from "../paginas/carrito/cart";
+import Success from "../componentes/Success/Success";
 
 export const Paginas = () => {
   return (
     <section>
       <Routes>
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/succes" element={<Success/>} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/" element={<ProductosLista />} />
         <Route path="/profile" element={adminGuard(<AdminProfileForm />)} />
