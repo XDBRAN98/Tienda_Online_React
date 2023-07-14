@@ -35,7 +35,7 @@ export const ProductoDetalles = () => {
                         />
                     </div>
 
-                    <input
+                    <input className='slider'
                         type="range"
                         min={1}
                         max={3}

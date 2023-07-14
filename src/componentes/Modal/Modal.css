@@ -59,9 +59,7 @@
     border: 2px solid black;
 }
 
-.modalLeft input:target{
-    border: 2px solid #08a05c !important;
-}
+
 
 .modalRight{
     overflow: hidden;

@@ -6,6 +6,7 @@
     box-shadow: 0 -2px 6px #060a08a4;
     flex-direction: row;
     flex-wrap: wrap;
+    padding-bottom: 30px;
 }
 
 #footer h3{
