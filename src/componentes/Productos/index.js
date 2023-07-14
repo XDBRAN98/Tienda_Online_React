@@ -13,7 +13,46 @@ const URL = `${serverBackEndDireccion()}cart/add`;
 export const ProductosLista = () => {
 	// Obtener la lista de productos utilizando el hook useProductos
 	const { productos } = useProductos();
-	
+
+    const [cartItems, setCartItems] = useState([]);
+
+    const onAddProduct = (producto) => {
+        setCartItems([...cartItems, producto]);
+        sendToCart(producto, cliente?.ID_Usuario);
+    };
+
+    const sendToCart = async (producto, clienteId) => {
+        try {
+            const data = {
+                clienteId: clienteId,
+                productoId: producto.ID_Producto,
+                cantidad: 1
+            };
+            console.log(data);
+
+            const response = await fetch(URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const responseData = await response.json();
+            console.log(responseData);
+        } catch (error) {
+            console.error('Error al enviar el carrito:', error);
+        }
+    };
+
+    const handleAddToCart = (producto) => {
+        if (cliente) {
+            onAddProduct(producto);
+        } else {
+            // Redirect to login view
+            window.location.href = '/login';
+        }
+    };
 
     return (
         <>
@@ -59,3 +98,4 @@ export const ProductosLista = () => {
         </>
     );
 };
+
