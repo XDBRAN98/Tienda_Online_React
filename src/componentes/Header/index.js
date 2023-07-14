@@ -18,13 +18,9 @@ export const Header = () => {
 
   const logout = () => {
     // Aquí va la lógica para realizar el logout
-    // Al final, borramos todos los datos del local storage
-    localStorage.clear();
+    // Al final, no olvides remover el usuario del local storage
+    localStorage.removeItem('user');
     setUserRole(null);
-    // Redireccionamos a la página de inicio y recargamos la página
-    
-    window.location.reload();
-    window.location.href = "/";
   }
 
   return (
@@ -34,27 +30,29 @@ export const Header = () => {
           <img src={Logo} alt="" width="200" />
         </div>
       </Link>
-
       <div className="header_icons">
         <div className="cart">
           <Link to={"/cart"}>
-            <box-icon name="cart" size ="smallest"></box-icon>
+            <box-icon name="cart" size="smallest"></box-icon>
           </Link>
           <span className="item__total">0</span>
         </div>
 
         {userRole === 1 ? (
           <>
-            <Link to="/profile">
-              <div className="profile">
+            <div className="profile">
+              <Link to="/profile">
                 <box-icon name="user"></box-icon>
-              </div>
-            </Link>
-            <button onClick={logout}>
-              <div className="logout">
-                <box-icon name="log-out"></box-icon>
-              </div>
-            </button>
+              </Link>
+            </div>
+
+            <div className="logout">
+              <button className="logoutBt" onClick={logout}>
+                <div className="logout">
+                  <box-icon name="log-out"></box-icon>
+                </div>
+              </button>
+            </div>
           </>
         ) : userRole === 2 ? (
           <>
