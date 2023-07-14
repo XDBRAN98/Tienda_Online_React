@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './cart.css';
 import ImageEmpty from '../../acces/pngwing.com.png';
+import axios from 'axios';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -11,6 +12,7 @@ const Cart = () => {
       try {
         const response = await fetch(`http://localhost:5000/carrito/${clienteId}`);
         const data = await response.json();
+        console.log(data);
         setItems(data.productos);
       } catch (error) {
         console.error('Error al obtener los artículos del carrito:', error);
@@ -23,21 +25,46 @@ const Cart = () => {
   }, [clienteId]);
 
   const addItemToCart = (item) => {
-    // Añadir un artículo al carrito
     const updatedItems = [...items];
     const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
     if (existingItemIndex !== -1) {
-      // Si el artículo ya existe en el carrito, incrementar la cantidad
       updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
-      // Si el artículo no existe en el carrito, agregarlo
       updatedItems.push({ producto: { ...item.producto, Cantidad: 1 }, subtotal: item.subtotal });
     }
     setItems(updatedItems);
   };
 
+  const handleButtonPress = async () => {
+    const formData = {
+      line_items: [
+        {
+          price_data: {
+            product_data: {
+              name: 'Carrito de productos',
+              description: 'Cobro por productos en el carrito',
+            },
+            currency: 'usd',
+            unit_amount: calculateSubtotal()//200.00,
+          },
+          quantity: 1
+        }
+      ]
+    }
+
+    try {
+      axios.post('http://localhost:5000/checkout', formData)
+        .then(res => {
+          if (res.data.result) {
+            window.location.href = res.data.result.url;
+          }
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const decreaseItemQuantity = (index) => {
-    // Disminuir la cantidad de un artículo en el carrito
     const updatedItems = [...items];
     if (updatedItems[index].producto.Cantidad > 1) {
       updatedItems[index].producto.Cantidad -= 1;
@@ -45,20 +72,25 @@ const Cart = () => {
     }
   };
 
-  const removeItemFromCart = (index) => {
-    // Eliminar un artículo del carrito
+const deleteItemFromCart = async (index) => {
+  const productoId = items[index].producto.ID_Producto;
+  console.log(productoId);
+  try {
+    await axios.delete(`http://localhost:5000/carrito/${clienteId}/${productoId}`);
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
     setItems(updatedItems);
-  };
+  } catch (error) {
+    console.error('Error al eliminar el producto del carrito:', error);
+  }
+};
+
 
   const clearCart = () => {
-    // Vaciar el carrito
     setItems([]);
   };
 
   const calculateSubtotal = () => {
-    // Calcular el subtotal de todos los artículos en el carrito
     let subtotal = 0;
     items.forEach((item) => {
       subtotal += item.subtotal;
@@ -69,29 +101,28 @@ const Cart = () => {
   return (
     <div className="cart">
       {items.length === 0 ? (
-        // Mostrar mensaje de carrito vacío si no hay artículos
         <div className="cart__empty">
           <img src={ImageEmpty} alt="Carrito vacío" />
           <p>No hay artículos en el carrito.</p>
         </div>
       ) : (
         <>
-          {/* Mostrar la lista de artículos en el carrito */}
           <ul className="cart__list">
             {items.map((item, index) => (
               <li key={index} className="cart__item">
                 <div className="cart__item-thumbnail">
-                  <img src={item.producto.Imagen} alt="Producto" />
+                  <img src={item.producto.Imagen_1} alt="Producto" />
                 </div>
                 <div className="cart__item-info">
                   <div className="cart__item-details">
-                    <label className="cart__item-name">{item.producto.Nombre}</label>
+                    <label className="cart__item-name">{item.producto.Nombre_Producto}</label>
                     <button
-                      className="cart__item-remove"
-                      onClick={() => removeItemFromCart(index)}
-                    >
-                      Eliminar
-                    </button>
+  className="cart__item-remove"
+  onClick={() => deleteItemFromCart(index)}
+>
+  Eliminar
+</button>
+
                   </div>
                   <div className="cart__item-quantity">
                     <button
@@ -113,6 +144,8 @@ const Cart = () => {
                       +
                     </button>
                   </div>
+                  <div className="cart__item-quantity-label">Cantidad:</div>
+                  <span className="cart__item-quantity-value">{item.producto.Cantidad}</span>
                 </div>
               </li>
             ))}
@@ -121,7 +154,7 @@ const Cart = () => {
             Subtotal: ${calculateSubtotal()}
           </div>
           <div className="cart__buttons">
-            <button className="cart__buy-button">Comprar</button>
+            <button onClick={handleButtonPress} className="cart__buy-button">Comprar</button>
             <button className="cart__clear cart__clear--red" onClick={clearCart}>
               Vaciar carrito
             </button>
