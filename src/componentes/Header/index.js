@@ -8,6 +8,7 @@ export const Header = () => {
   const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
+    // Obtener el rol del usuario del local storage al cargar el componente
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setUserRole(user.ID_Rol);
@@ -17,12 +18,12 @@ export const Header = () => {
   }, [location]);
 
   const logout = () => {
-    // Aquí va la lógica para realizar el logout
-    // Al final, borramos todos los datos del local storage
+    // Lógica para realizar el logout del usuario
+    // Limpiar los datos del local storage y restablecer el rol del usuario
     localStorage.clear();
     setUserRole(null);
-    // Redireccionamos a la página de inicio y recargamos la página
-    
+
+    // Recargar la página y redirigir al inicio
     window.location.reload();
     window.location.href = "/";
   }
@@ -44,6 +45,7 @@ export const Header = () => {
         </div>
 
         {userRole === 1 ? (
+          // Mostrar opciones adicionales para el rol de usuario 1 (administrador)
           <>
             <Link to="/profile">
               <div className="profile">
@@ -57,6 +59,7 @@ export const Header = () => {
             </button>
           </>
         ) : userRole === 2 ? (
+          // Mostrar opción de logout para el rol de usuario 2 (cliente)
           <>
             <button onClick={logout}>
               <div className="logout">
@@ -65,6 +68,7 @@ export const Header = () => {
             </button>
           </>
         ) : (
+          // Mostrar opción de login para usuarios no autenticados, excepto en la página de login
           location.pathname !== "/login" && (
             <Link to="/login">
               <div className="login">

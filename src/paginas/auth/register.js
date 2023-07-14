@@ -3,11 +3,11 @@ import axios from "axios";
 import "./registro.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
-
+// URL de la API para el registro
 const URL =`${serverBackEndDireccion()}register`;
 
-
 const RegistrationForm = () => {
+  // Estados para los campos del formulario y mensajes de éxito y error
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +17,7 @@ const RegistrationForm = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Funciones para manejar el cambio de cada campo del formulario
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -41,6 +42,7 @@ const RegistrationForm = () => {
     setTelefono(e.target.value);
   };
 
+  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 

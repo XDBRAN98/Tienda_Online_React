@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useProductos } from "../../Hooks/UseProductos";
 
 export const ProductosLista = () => {
+	// Obtener la lista de productos utilizando el hook useProductos
 	const { productos } = useProductos();
 
 	return (

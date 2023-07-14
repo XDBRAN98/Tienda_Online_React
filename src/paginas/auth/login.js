@@ -3,24 +3,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
-
+// URL de la API para el inicio de sesión
 const URL =`${serverBackEndDireccion()}login`;
 
-
 const LoginForm = () => {
+  // Estados para el email, contraseña y mensaje
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
+  // Función para manejar el cambio de email
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+  // Función para manejar el cambio de contraseña
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -63,6 +66,7 @@ const LoginForm = () => {
     }
   };
 
+  // Función para manejar el olvido de contraseña
   const handleForgotPassword = () => {
     console.log('Olvidé mi contraseña');
   };
