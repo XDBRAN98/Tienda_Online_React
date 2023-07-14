@@ -5,6 +5,8 @@ import { useProductos } from "../../Hooks/UseProductos";
 
 import { serverBackEndDireccion } from '../../rutas/serverback';
 
+//extraer del local storage el id del cliente
+const cliente = JSON.parse(localStorage.getItem('user'));
 
 const URL =`${serverBackEndDireccion()}cart/add`;
 
@@ -16,16 +18,17 @@ export const ProductosLista = () => {
   
 	const onAddProduct = (producto) => {
 	  setCartItems([...cartItems, producto]);
-	  sendToCart(producto);
+	  sendToCart(producto,cliente.ID_Usuario );
 	};
   
-	const sendToCart = async (producto, clienteId, cantidad) => {
+	const sendToCart = async (producto, clienteId) => {
 		try {
 		  const data = {
 			clienteId: clienteId,
 			productoId: producto.ID_Producto,
-			cantidad: cantidad
+			cantidad:1
 		  };
+		  console.log(data);
 	  
 		  const response = await fetch(URL, {
 			method: 'POST',
