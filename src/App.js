@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Header } from "./componentes/Header";
 import { Paginas } from "./rutas/paginas";
 import { Footer } from "./componentes/Footer/Footer";
+import { CartProvider } from "./context/cart";
 
 
 function App() {
@@ -13,9 +14,11 @@ function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<Header />
-				<Paginas />
-				<Footer/>
+				<CartProvider>
+					<Header />
+					<Paginas />
+					<Footer/>
+				</CartProvider>
 			</BrowserRouter>
 		</div>
 	);
