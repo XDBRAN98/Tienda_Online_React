@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import './Modal.css';
 
+import { serverBackEndDireccion } from '../../rutas/serverback';
+
+const URL = `${serverBackEndDireccion()}products`;
+
+
 const Modal = ({ selectedProduct, setIsModalOpen }) => {
   
   const [productData, setProductData] = useState({ ...selectedProduct });
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -17,7 +21,7 @@ const Modal = ({ selectedProduct, setIsModalOpen }) => {
 
   const handleApplyChanges = () => {
     console.log('Applying changes to product:', productData);
-    fetch(`http://localhost:5000/products`, {
+    fetch(URL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

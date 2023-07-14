@@ -4,6 +4,11 @@ import { GrValidate } from 'react-icons/gr';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import { BsFillHandThumbsUpFill } from 'react-icons/bs';
 
+import { serverBackEndDireccion } from '../../rutas/serverback';
+
+const URLS = `${serverBackEndDireccion()}carrito/vaciar/`;
+
+
 function postOrder() {
   // Código para enviar la orden
 }
@@ -11,7 +16,7 @@ function postOrder() {
 function Success() {
   useEffect(() => {
     const clienteId = JSON.parse(localStorage.getItem('user'));
-    const URL = `http://localhost:5000/carrito/vaciar/${clienteId.ID_Usuario}`;
+    const URL = `${URLS}${clienteId.ID_Usuario}`;
 
     fetch(URL, {
       method: 'DELETE',

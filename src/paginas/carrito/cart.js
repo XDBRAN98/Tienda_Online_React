@@ -6,6 +6,10 @@ import ImageEmpty from '../../acces/pngwing.com.png';
 import { useCart } from '../../context/cart';
 import { clear } from '@testing-library/user-event/dist/clear';
 
+import { serverBackEndDireccion } from '../../rutas/serverback';
+
+
+const URL =`${serverBackEndDireccion()}`;
 
 
 const Cart = () => {
@@ -16,7 +20,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/carrito/${clienteId}`);
+        const response = await fetch(`${URL}${clienteId}`);
         const data = await response.json();
         setItems(data.productos);
       } catch (error) {
@@ -48,7 +52,7 @@ const Cart = () => {
     
 
     try {
-      axios.post('http://localhost:5000/checkout', formData)
+      axios.post(`${URL}checkout`, formData)
         .then((res) => {
           console.log(res.data.result);
           if (res.data.result) {
@@ -59,8 +63,6 @@ const Cart = () => {
       console.error(error);
     }
   };
-
-
 
 
   const addItemToCart = (producto) => {

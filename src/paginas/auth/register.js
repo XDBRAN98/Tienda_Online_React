@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./registro.css";
-import { serverBackEndDireccion } from '../../rutas/serverback';
 import { useNavigate } from 'react-router-dom';
+import { serverBackEndDireccion } from '../../rutas/serverback';
+
 // URL de la API para el registro
 const URL =`${serverBackEndDireccion()}register`;
 
