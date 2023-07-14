@@ -74,6 +74,7 @@ const Cart = () => {
 
 const deleteItemFromCart = async (index) => {
   const productoId = items[index].producto.ID_Producto;
+  console.log(productoId);
   try {
     await axios.delete(`http://localhost:5000/carrito/${clienteId}/${productoId}`);
     const updatedItems = [...items];
