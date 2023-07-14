@@ -75,9 +75,17 @@ const Modal = ({ selectedProduct, setIsModalOpen }) => {
           />
         </div>
         <div className="modalRight">
-          <img src={selectedProduct.Imagen_1} alt="Product Image" />
-          <button id="applyChanges" onClick={handleApplyChanges}>Aplicar Cambios</button>
-          <button className="cerrarModal" onClick={() => setIsModalOpen(false)}>Cancelar</button>
+          <div className="modalImageContainer">
+            <img src={selectedProduct.Imagen_1} alt="Product Image" />
+          </div>
+          <div className="modalButtonContainer">
+            <button id="applyChanges" onClick={handleApplyChanges}>
+              Aplicar Cambios
+            </button>
+            <button className="cerrarModal" onClick={() => setIsModalOpen(false)}>
+              Cancelar
+            </button>
+          </div>
         </div>
       </div>
     </div>
