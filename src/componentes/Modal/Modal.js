@@ -11,12 +11,12 @@ const Modal = ({ selectedProduct, setIsModalOpen }) => {
                     <input type="text" defaultValue={selectedProduct.Nombre_Producto}></input>
                     <p>Precio: </p>
                     <input type="text" defaultValue={selectedProduct.Precio}></input>
+                    <p>Stock Minimo: </p>
+                    <input type="text" defaultValue={selectedProduct.Min}></input>
                     <p>Stock Maximo: </p>
                     <input type="text" defaultValue={selectedProduct.Max}></input>
-                    <p>Stock Maximo: </p>
-                    <input type="text" defaultValue={selectedProduct.Nombre_Producto}></input>
                     <p>Stock: </p>
-                    <input type="text" defaultValue={selectedProduct.Min}></input>
+                    <input type="text" defaultValue={selectedProduct.Stock}></input>
                 </div>
                 <div className="modalRight">
                     <img src={selectedProduct.Imagen_1} ></img>

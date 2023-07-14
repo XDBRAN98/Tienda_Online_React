@@ -5,7 +5,6 @@ import { serverBackEndDireccion } from '../../rutas/serverback';
 import EditProduct from '../../componentes/Edit/Edit'
 
 
-
 const URL =`${serverBackEndDireccion()}edit`;
 const usuario = JSON.parse(localStorage.getItem("user"));
 
