@@ -9,7 +9,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -29,7 +28,7 @@ code {
 
 /*---------------------------------- Header ----------------------------------*/
 .header__primario {
-  width: 97vh;
+  width: 97%;
   min-height: 100px;
   width: 100%;
   overflow: hidden;
@@ -41,7 +40,7 @@ code {
   top: 0;
   box-sizing: border-box;
   background-color: white;
-  box-shadow: 0 5px 10px #131313;
+  box-shadow: 0 5px 10px #08a05ca4;
   z-index: 1;
 }
 
@@ -183,7 +182,6 @@ header ul li a {
 
 .producto__footer .price {
   font-size: 2rem;
-
   color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
 }
@@ -245,23 +243,20 @@ header ul li a {
 
 /*---------------------------------- Detalles Productos ----------------------------------*/
 .detalles{
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  padding: 1rem;
+  padding: 2rem 1rem 0 1rem;
   box-sizing: border-box;
-  margin: 0;
 }
 
 .detalles h2{
-  text-align: center;
   font-size: 3.5rem;
   width: 100%;
   max-width: 1000px;
-  margin: 0;
+  margin: 0 auto;
   font-family:Helvetica, sans-serif;
   color: #1a202c;
 }
@@ -274,7 +269,7 @@ header ul li a {
 
 .detalles button{
   max-width: 300px;
-  margin: 1rem;
+  margin: 1rem 0 0 0;
   padding: 1rem 1rem;
   border: none;
   outline: 0;
@@ -287,6 +282,7 @@ header ul li a {
 }
 
 .detalles img{
+  min-height: 300px;
   object-fit: contain;
   margin-top:  -7rem;
   z-index: -1;
@@ -317,7 +313,6 @@ header ul li a {
 }
 
 .contenedorImagenDetalles{
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
