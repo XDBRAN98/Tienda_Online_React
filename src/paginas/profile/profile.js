@@ -1,15 +1,19 @@
+// Importamos los paquetes necesarios
 import React, { useState } from "react";
 import axios from "axios";
 import "./profile.css";
 import { serverBackEndDireccion } from '../../rutas/serverback';
 import EditProduct from '../../componentes/Edit/Edit'
 
-
+// Definimos la URL del servidor
 const URL =`${serverBackEndDireccion()}edit`;
+
+// Obtenemos los datos del usuario almacenados en localStorage
 const usuario = JSON.parse(localStorage.getItem("user"));
 
-
+// Creamos el componente AdminProfileForm
 const AdminProfileForm = () => {
+  // Inicializamos los estados de la aplicación
   const [originalEmail, setOriginalEmail] = useState(usuario.Email);
   const [originalPassword,] = useState(usuario.Password);
   const [originalDireccion, setOriginalDireccion] = useState(usuario.Direccion);
@@ -24,6 +28,7 @@ const AdminProfileForm = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Creamos los manejadores de eventos para los cambios en los campos del formulario
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -40,6 +45,7 @@ const AdminProfileForm = () => {
     setTelefono(e.target.value);
   };
 
+  // Creamos los manejadores de eventos para el botón de edición y cancelación
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -52,9 +58,11 @@ const AdminProfileForm = () => {
     setTelefono(originalTelefono);
   };
 
+  // Creamos el manejador de eventos para el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Creamos el objeto con los datos actualizados del perfil
     const updatedProfile = {
       Name: name,
       Lastname: lastname,
@@ -63,7 +71,8 @@ const AdminProfileForm = () => {
       Direccion: direccion,
       Telefono: telefono,
     };
-    console.log(updatedProfile);
+
+    // Realizamos la petición al servidor para actualizar el perfil
     axios
       .put(URL, updatedProfile)
       .then((response) => {
@@ -88,11 +97,11 @@ const AdminProfileForm = () => {
       });
   };
 
+  // Renderizamos el componente
   return (
     <div className = "registration">
       <form onSubmit={handleSubmit} className="registration-form">
         <div className="fullName">
-          
             <div className="form-group">
             <label>Informacion Personal</label>
               <label className="label">Nombre:</label>
@@ -144,7 +153,7 @@ const AdminProfileForm = () => {
           />
         </div>
         <div className="form-group">
-          <label className="label">Teléfono:</label>
+          <label className="label">Telefono:</label>
           <input
             type="text"
             value={telefono}
@@ -153,28 +162,34 @@ const AdminProfileForm = () => {
             className="input"
           />
         </div>
-        {isEditing ? (
-          <>
-            <button type="submit" className="button">
-              Actualizar
+        <div className="form-group">
+          {isEditing ? (
+            <div>
+              <button type="submit" className="button">
+                Guardar Cambios
+              </button>
+              <button onClick={handleCancelClick} className="button">
+                Cancelar
+              </button>
+            </div>
+          ) : (
+            <button onClick={handleEditClick} className="button">
+              Editar Perfil
             </button>
-            <button type="button" onClick={handleCancelClick} className="button">
-              Cancelar
-            </button>
-          </>
-        ) : (
-          <button type="button" onClick={handleEditClick} className="button">
-            Editar
-          </button>
-        )}
+          )}
+        </div>
       </form>
-      {successMessage && <p className="success-message">{successMessage}</p>}
+
+    
+
+      {successMessage && <p className="success-message">{successMessage}</p>}   
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
+      
       <EditProduct/>
     </div>
-    
   );
 };
 
 export default AdminProfileForm;
+
