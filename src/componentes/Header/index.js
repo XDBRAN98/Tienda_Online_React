@@ -40,7 +40,7 @@ export const Header = () => {
           <Link to={"/cart"}>
             <box-icon name="cart" size="smallest"></box-icon>
           </Link>
-          <span className="item__total">0</span>
+          
         </div>
 
         {userRole === 1 ? (

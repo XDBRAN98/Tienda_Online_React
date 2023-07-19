@@ -10,23 +10,30 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/carrito/${clienteId}`);
-        const data = await response.json();
-        console.log(data);
-        setItems(data.productos);
+        if (clienteId) {
+          const response = await fetch(`http://localhost:5000/carrito/${clienteId}`);
+          const data = await response.json();
+
+          // Asegurarse de que la respuesta contenga la propiedad 'productos'
+          if (data && data.productos) {
+            setItems(data.productos);
+          } else {
+            setItems([]); // Establecer el carrito como vacío si no hay productos
+          }
+        }
       } catch (error) {
         console.error('Error al obtener los artículos del carrito:', error);
       }
     };
 
-    if (clienteId) {
-      fetchCartItems();
-    }
+    fetchCartItems();
   }, [clienteId]);
 
   const addItemToCart = (item) => {
     const updatedItems = [...items];
-    const existingItemIndex = updatedItems.findIndex((i) => i.producto.ID_Producto === item.producto.ID_Producto);
+    const existingItemIndex = updatedItems.findIndex(
+      (i) => i.producto.ID_Producto === item.producto.ID_Producto
+    );
     if (existingItemIndex !== -1) {
       updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
@@ -45,20 +52,18 @@ const Cart = () => {
               description: 'Cobro por productos en el carrito',
             },
             currency: 'usd',
-            unit_amount: calculateSubtotal()//200.00,
+            unit_amount: calculateSubtotal(), // Se debe proporcionar un valor correcto aquí
           },
-          quantity: 1
-        }
-      ]
-    }
+          quantity: 1,
+        },
+      ],
+    };
 
     try {
-      axios.post('http://localhost:5000/checkout', formData)
-        .then(res => {
-          if (res.data.result) {
-            window.location.href = res.data.result.url;
-          }
-        })
+      const res = await axios.post('http://localhost:5000/checkout', formData);
+      if (res.data.result) {
+        window.location.href = res.data.result.url;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -72,19 +77,18 @@ const Cart = () => {
     }
   };
 
-const deleteItemFromCart = async (index) => {
-  const productoId = items[index].producto.ID_Producto;
-  console.log(productoId);
-  try {
-    await axios.delete(`http://localhost:5000/carrito/${clienteId}/${productoId}`);
-    const updatedItems = [...items];
-    updatedItems.splice(index, 1);
-    setItems(updatedItems);
-  } catch (error) {
-    console.error('Error al eliminar el producto del carrito:', error);
-  }
-};
-
+  const deleteItemFromCart = async (index) => {
+    const productoId = items[index].producto.ID_Producto;
+    console.log(productoId);
+    try {
+      await axios.delete(`http://localhost:5000/carrito/${clienteId}/${productoId}`);
+      const updatedItems = [...items];
+      updatedItems.splice(index, 1);
+      setItems(updatedItems);
+    } catch (error) {
+      console.error('Error al eliminar el producto del carrito:', error);
+    }
+  };
 
   const clearCart = () => {
     setItems([]);
@@ -116,19 +120,12 @@ const deleteItemFromCart = async (index) => {
                 <div className="cart__item-info">
                   <div className="cart__item-details">
                     <label className="cart__item-name">{item.producto.Nombre_Producto}</label>
-                    <button
-  className="cart__item-remove"
-  onClick={() => deleteItemFromCart(index)}
->
-  Eliminar
-</button>
-
+                    <button className="cart__item-remove" onClick={() => deleteItemFromCart(index)}>
+                      Eliminar
+                    </button>
                   </div>
                   <div className="cart__item-quantity">
-                    <button
-                      className="cart__item-button"
-                      onClick={() => decreaseItemQuantity(index)}
-                    >
+                    <button className="cart__item-button" onClick={() => decreaseItemQuantity(index)}>
                       -
                     </button>
                     <input
@@ -137,10 +134,7 @@ const deleteItemFromCart = async (index) => {
                       value={item.producto.Cantidad}
                       readOnly
                     />
-                    <button
-                      className="cart__item-button"
-                      onClick={() => addItemToCart(item)}
-                    >
+                    <button className="cart__item-button" onClick={() => addItemToCart(item)}>
                       +
                     </button>
                   </div>
@@ -150,11 +144,11 @@ const deleteItemFromCart = async (index) => {
               </li>
             ))}
           </ul>
-          <div className="cart__subtotal">
-            Subtotal: ${calculateSubtotal()}
-          </div>
+          <div className="cart__subtotal">Subtotal: ${calculateSubtotal()}</div>
           <div className="cart__buttons">
-            <button onClick={handleButtonPress} className="cart__buy-button">Comprar</button>
+            <button onClick={handleButtonPress} className="cart__buy-button">
+              Comprar
+            </button>
             <button className="cart__clear cart__clear--red" onClick={clearCart}>
               Vaciar carrito
             </button>
