@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './cart.css';
 import ImageEmpty from '../../acces/pngwing.com.png';
 import axios from 'axios';
-
+import { serverBackEndDireccion } from '../../rutas/serverback';
 const Cart = () => {
   const [items, setItems] = useState([]);
   const clienteId = JSON.parse(localStorage.getItem('user'))?.ID_Usuario;
-
+  const URL = `${serverBackEndDireccion()}cart/add`;
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -29,19 +29,48 @@ const Cart = () => {
     fetchCartItems();
   }, [clienteId]);
 
-  const addItemToCart = (item) => {
+  const addItemToCart = async (item) => {
     const updatedItems = [...items];
     const existingItemIndex = updatedItems.findIndex(
       (i) => i.producto.ID_Producto === item.producto.ID_Producto
     );
+  
     if (existingItemIndex !== -1) {
+      // If the item already exists in the cart, increase the quantity
       updatedItems[existingItemIndex].producto.Cantidad += 1;
     } else {
+      // If the item is not in the cart, add it with a quantity of 1
       updatedItems.push({ producto: { ...item.producto, Cantidad: 1 }, subtotal: item.subtotal });
     }
+  
     setItems(updatedItems);
+  
+    try {
+      // Prepare the data to be sent to the backend
+      const data = {
+        clienteId: clienteId,
+        productoId: item.producto.ID_Producto,
+        cantidad: 1, // For adding a new item, send a quantity of 1
+      };
+      
+      // Make a POST request to the backend API
+      const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      // Handle the response from the backend if needed
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error('Error al enviar el carrito:', error);
+      // If there's an error, you might want to handle it appropriately
+    }
   };
-
+  
   const handleButtonPress = async () => {
     const formData = {
       line_items: [
@@ -69,13 +98,43 @@ const Cart = () => {
     }
   };
 
-  const decreaseItemQuantity = (index) => {
+  const decreaseItemQuantity = async (index) => {
     const updatedItems = [...items];
+    
     if (updatedItems[index].producto.Cantidad > 1) {
+      // Reduce the quantity in the client-side data
       updatedItems[index].producto.Cantidad -= 1;
       setItems(updatedItems);
+  
+      try {
+        // Prepare the data to be sent to the backend
+        const data = {
+          clienteId: clienteId,
+          productoId: updatedItems[index].producto.ID_Producto,
+          cantidad: -1, // Reduce the quantity by 1 on the server-side
+        };
+        
+        // Make a POST request to the backend API
+        const response = await fetch(URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+  
+        // Handle the response from the backend if needed
+        const responseData = await response.json();
+        console.log(responseData);
+      } catch (error) {
+        console.error('Error al enviar el carrito:', error);
+        // If there's an error, you might want to revert the change on the client-side
+        // updatedItems[index].producto.Cantidad += 1;
+        // setItems(updatedItems);
+      }
     }
   };
+  
 
   const deleteItemFromCart = async (index) => {
     const productoId = items[index].producto.ID_Producto;
